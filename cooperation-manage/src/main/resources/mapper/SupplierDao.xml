@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.cooperationmanage.dao.SupplierDao">
+
+    <resultMap type="com.woniuxy.cooperationmanage.entity.Supplier" id="SupplierMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="componentsId" column="components_id" jdbcType="INTEGER"/>
+        <association property="components" column="components_id"  javaType="components" select="selectComponentsById"/>
+    </resultMap>
+    <select id="selectComponentsById" resultType="components">
+        select
+            id, name
+        from components
+        where id = #{components_id}
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SupplierMap">
+        select
+          id, name, components_id
+        from supplier
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="SupplierMap">
+        select
+          id, name, components_id
+        from supplier
+        <where>
+            <if test="supplier.id != null">
+                and id = #{supplier.id}
+            </if>
+            <if test="supplier.name != null and supplier.name != ''">
+                and name = #{supplier.name}
+            </if>
+            <if test="supplier.componentsId != null">
+                and components_id = #{supplier.componentsId}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from supplier
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="componentsId != null">
+                and components_id = #{componentsId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into supplier(name, components_id)
+        values (#{name}, #{componentsId})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update supplier
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="componentsId != null">
+                components_id = #{componentsId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from supplier where id = #{id}
+    </delete>
+
+</mapper>
+

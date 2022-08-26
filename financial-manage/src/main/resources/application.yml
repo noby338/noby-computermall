@@ -1,0 +1,22 @@
+server:
+  port: ${port:3031}
+logging:
+  level:
+    com.woniuxy.financialmanage: debug
+spring:
+  application:
+    name: financial-manage
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/noby_computermall?serverTimezone=UTC
+    username: root
+    password: 123
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+
+mybatis:
+  type-aliases-package: com.woniuxy.financialmanage.entity
+  mapper-locations: classpath:/mapper/*Dao.xml
+
+

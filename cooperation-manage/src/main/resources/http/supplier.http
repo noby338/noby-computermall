@@ -1,0 +1,37 @@
+
+### 通过id查询 supplier
+GET http://localhost:5051/supplier/1
+
+### 添加 supplier
+POST http://localhost:5051/supplier
+Content-Type: application/json
+
+{
+  "id": null,
+  "name": null,
+  "componentsId": 1
+}
+
+
+### 删除 supplier
+DELETE http://localhost:5051/supplier/1
+
+### 分页查询 supplier
+GET http://localhost:5051/supplier/2/5
+Content-Type: application/json
+
+{
+  "id": null,
+  "name": null,
+  "componentsId": 1
+}
+
+### 修改 supplier
+PUT http://localhost:5051/supplier
+Content-Type: application/json
+
+{
+  "id": null,
+  "name": null,
+  "componentsId": 1
+}

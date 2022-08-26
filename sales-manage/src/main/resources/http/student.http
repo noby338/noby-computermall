@@ -1,0 +1,39 @@
+### 测试模块环境，通过id查询student
+GET http://localhost:4041/student/1
+
+### 测试模块环境，添加student
+POST http://localhost:4041/student
+Content-Type: application/json
+
+{
+  "id": null,
+  "name": "testStudent",
+  "age": 20,
+  "gender": 1
+}
+
+### 测试模块环境，删除student
+DELETE http://localhost:4041/student/1
+
+### 测试模块环境，分页查询
+GET http://localhost:4041/student/2/5
+Content-Type: application/json
+
+{
+  "id": null,
+  "name": null,
+  "age": null,
+  "gender": 1
+}
+
+### 测试模块环境，修改student
+PUT http://localhost:4041/student
+Content-Type: application/json
+
+{
+  "id": 2,
+  "name": "changedName",
+  "age": null,
+  "gender": 1
+}
+

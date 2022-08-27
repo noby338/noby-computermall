@@ -2,6 +2,7 @@ package com.woniuxy.cooperationmanage.controller;
 
 import com.woniuxy.cooperationmanage.entity.Components;
 import com.woniuxy.cooperationmanage.service.ComponentsService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -10,13 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 /**
- * (Components)表控制层
+ * 各电脑配件(Components)表控制层
  *
  * @author Noby
- * @since 2022-08-26 21:53:36
+ * @since 2022-08-27 19:46:02
  */
 @RestController
 @RequestMapping("components")
+@Slf4j
 public class ComponentsController {
     /**
      * 服务对象
@@ -34,6 +36,7 @@ public class ComponentsController {
      */
     @GetMapping("{page}/{size}")
     public ResponseEntity<Page<Components>> queryByPage(@RequestBody Components components, @PathVariable("page") int page, @PathVariable("size") int size) {
+        log.info("queryByPage ===> components = {}, page = {}, size = {}", components, page, size);
         PageRequest pageRequest = PageRequest.of(page,size);
         return ResponseEntity.ok(this.componentsService.queryByPage(components, pageRequest));
     }
@@ -46,6 +49,7 @@ public class ComponentsController {
      */
     @GetMapping("{id}")
     public ResponseEntity<Components> queryById(@PathVariable("id") Integer id) {
+        log.info("queryById ===> id = {}", id);
         return ResponseEntity.ok(this.componentsService.queryById(id));
     }
 
@@ -57,6 +61,7 @@ public class ComponentsController {
      */
     @PostMapping
     public ResponseEntity<Components> add(@RequestBody Components components) {
+        log.info("add ===> components = {}", components);
         return ResponseEntity.ok(this.componentsService.insert(components));
     }
 
@@ -68,6 +73,7 @@ public class ComponentsController {
      */
     @PutMapping
     public ResponseEntity<Components> edit(@RequestBody Components components) {
+        log.info("edit ===> components = {}", components);
         return ResponseEntity.ok(this.componentsService.update(components));
     }
 
@@ -79,6 +85,7 @@ public class ComponentsController {
      */
     @DeleteMapping("{id}")
     public ResponseEntity<Boolean> deleteById(@PathVariable("id") Integer id) {
+        log.info("deleteById ===> id = {}", id);
         return ResponseEntity.ok(this.componentsService.deleteById(id));
     }
 

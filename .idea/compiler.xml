@@ -16,5 +16,8 @@
         <module name="storehouse-manage" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="financial-manage (1)" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

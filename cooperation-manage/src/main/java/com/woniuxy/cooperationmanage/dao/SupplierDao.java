@@ -9,7 +9,7 @@ import java.util.List;
  * 供应商(Supplier)表数据库访问层
  *
  * @author Noby
- * @since 2022-08-26 22:03:12
+ * @since 2022-08-27 19:43:56
  */
 public interface SupplierDao {
 

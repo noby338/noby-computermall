@@ -2,6 +2,7 @@ package com.woniuxy.cooperationmanage.controller;
 
 import com.woniuxy.cooperationmanage.entity.Supplier;
 import com.woniuxy.cooperationmanage.service.SupplierService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +14,11 @@ import javax.annotation.Resource;
  * 供应商(Supplier)表控制层
  *
  * @author Noby
- * @since 2022-08-26 22:03:12
+ * @since 2022-08-27 19:43:56
  */
 @RestController
 @RequestMapping("supplier")
+@Slf4j
 public class SupplierController {
     /**
      * 服务对象
@@ -34,6 +36,7 @@ public class SupplierController {
      */
     @GetMapping("{page}/{size}")
     public ResponseEntity<Page<Supplier>> queryByPage(@RequestBody Supplier supplier, @PathVariable("page") int page, @PathVariable("size") int size) {
+        log.info("queryByPage ===> supplier = {}, page = {}, size = {}", supplier, page, size);
         PageRequest pageRequest = PageRequest.of(page,size);
         return ResponseEntity.ok(this.supplierService.queryByPage(supplier, pageRequest));
     }
@@ -46,6 +49,7 @@ public class SupplierController {
      */
     @GetMapping("{id}")
     public ResponseEntity<Supplier> queryById(@PathVariable("id") Integer id) {
+        log.info("queryById ===> id = {}", id);
         return ResponseEntity.ok(this.supplierService.queryById(id));
     }
 
@@ -57,6 +61,7 @@ public class SupplierController {
      */
     @PostMapping
     public ResponseEntity<Supplier> add(@RequestBody Supplier supplier) {
+        log.info("add ===> supplier = {}", supplier);
         return ResponseEntity.ok(this.supplierService.insert(supplier));
     }
 
@@ -68,6 +73,7 @@ public class SupplierController {
      */
     @PutMapping
     public ResponseEntity<Supplier> edit(@RequestBody Supplier supplier) {
+        log.info("edit ===> supplier = {}", supplier);
         return ResponseEntity.ok(this.supplierService.update(supplier));
     }
 
@@ -79,6 +85,7 @@ public class SupplierController {
      */
     @DeleteMapping("{id}")
     public ResponseEntity<Boolean> deleteById(@PathVariable("id") Integer id) {
+        log.info("deleteById ===> id = {}", id);
         return ResponseEntity.ok(this.supplierService.deleteById(id));
     }
 

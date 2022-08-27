@@ -98,6 +98,7 @@
         <entry key="noby_computermall.components">
           <value>
             <TableInfoDTO>
+              <option name="comment" value="各电脑配件" />
               <option name="fullColumn">
                 <list>
                   <ColumnInfoDTO>
@@ -145,7 +146,7 @@
               <option name="saveModelName" value="cooperation-manage" />
               <option name="savePackageName" value="com.woniuxy.cooperationmanage" />
               <option name="savePath" value="./cooperation-manage/src/main/java/com/woniuxy/cooperationmanage" />
-              <option name="templateGroupName" value="Noby" />
+              <option name="templateGroupName" value="NobyWithLog" />
             </TableInfoDTO>
           </value>
         </entry>
@@ -258,7 +259,7 @@
               <option name="saveModelName" value="cooperation-manage" />
               <option name="savePackageName" value="com.woniuxy.cooperationmanage" />
               <option name="savePath" value="./cooperation-manage/src/main/java/com/woniuxy/cooperationmanage" />
-              <option name="templateGroupName" value="Noby" />
+              <option name="templateGroupName" value="NobyWithLog" />
             </TableInfoDTO>
           </value>
         </entry>
@@ -424,7 +425,7 @@
               <option name="saveModelName" value="cooperation-manage" />
               <option name="savePackageName" value="com.woniuxy.cooperationmanage" />
               <option name="savePath" value="./cooperation-manage/src/main/java/com/woniuxy/cooperationmanage" />
-              <option name="templateGroupName" value="Noby" />
+              <option name="templateGroupName" value="NobyWithLog" />
             </TableInfoDTO>
           </value>
         </entry>

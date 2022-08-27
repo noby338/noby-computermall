@@ -1,8 +1,8 @@
 
-### 通过id查询 supplier
+### 通过id查询
 GET http://localhost:5051/supplier/1
 
-### 添加 supplier
+### 添加
 POST http://localhost:5051/supplier
 Content-Type: application/json
 
@@ -13,10 +13,10 @@ Content-Type: application/json
 }
 
 
-### 删除 supplier
+### 删除
 DELETE http://localhost:5051/supplier/1
 
-### 分页查询 supplier
+### 分页查询
 GET http://localhost:5051/supplier/2/5
 Content-Type: application/json
 
@@ -26,7 +26,7 @@ Content-Type: application/json
   "componentsId": 1
 }
 
-### 修改 supplier
+### 修改
 PUT http://localhost:5051/supplier
 Content-Type: application/json
 

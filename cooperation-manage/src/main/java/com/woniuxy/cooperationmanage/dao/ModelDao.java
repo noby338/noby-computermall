@@ -9,7 +9,7 @@ import java.util.List;
  * 各配件型号(Model)表数据库访问层
  *
  * @author Noby
- * @since 2022-08-26 23:20:54
+ * @since 2022-08-27 19:43:17
  */
 public interface ModelDao {
 

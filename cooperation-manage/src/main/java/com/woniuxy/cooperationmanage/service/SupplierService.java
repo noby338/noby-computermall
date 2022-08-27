@@ -8,7 +8,7 @@ import org.springframework.data.domain.PageRequest;
  * 供应商(Supplier)表服务接口
  *
  * @author Noby
- * @since 2022-08-26 22:03:12
+ * @since 2022-08-27 19:43:56
  */
 public interface SupplierService {
 

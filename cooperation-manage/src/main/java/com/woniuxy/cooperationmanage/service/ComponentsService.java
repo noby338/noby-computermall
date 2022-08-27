@@ -5,10 +5,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 /**
- * (Components)表服务接口
+ * 各电脑配件(Components)表服务接口
  *
  * @author Noby
- * @since 2022-08-26 21:53:36
+ * @since 2022-08-27 19:46:02
  */
 public interface ComponentsService {
 

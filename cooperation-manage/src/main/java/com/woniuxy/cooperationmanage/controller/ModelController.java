@@ -2,6 +2,7 @@ package com.woniuxy.cooperationmanage.controller;
 
 import com.woniuxy.cooperationmanage.entity.Model;
 import com.woniuxy.cooperationmanage.service.ModelService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +14,11 @@ import javax.annotation.Resource;
  * 各配件型号(Model)表控制层
  *
  * @author Noby
- * @since 2022-08-26 23:20:54
+ * @since 2022-08-27 19:43:17
  */
 @RestController
 @RequestMapping("model")
+@Slf4j
 public class ModelController {
     /**
      * 服务对象
@@ -34,6 +36,7 @@ public class ModelController {
      */
     @GetMapping("{page}/{size}")
     public ResponseEntity<Page<Model>> queryByPage(@RequestBody Model model, @PathVariable("page") int page, @PathVariable("size") int size) {
+        log.info("queryByPage ===> model = {}, page = {}, size = {}", model, page, size);
         PageRequest pageRequest = PageRequest.of(page,size);
         return ResponseEntity.ok(this.modelService.queryByPage(model, pageRequest));
     }
@@ -46,6 +49,7 @@ public class ModelController {
      */
     @GetMapping("{id}")
     public ResponseEntity<Model> queryById(@PathVariable("id") Integer id) {
+        log.info("queryById ===> id = {}", id);
         return ResponseEntity.ok(this.modelService.queryById(id));
     }
 
@@ -57,6 +61,7 @@ public class ModelController {
      */
     @PostMapping
     public ResponseEntity<Model> add(@RequestBody Model model) {
+        log.info("add ===> model = {}", model);
         return ResponseEntity.ok(this.modelService.insert(model));
     }
 
@@ -68,6 +73,7 @@ public class ModelController {
      */
     @PutMapping
     public ResponseEntity<Model> edit(@RequestBody Model model) {
+        log.info("edit ===> model = {}", model);
         return ResponseEntity.ok(this.modelService.update(model));
     }
 
@@ -79,6 +85,7 @@ public class ModelController {
      */
     @DeleteMapping("{id}")
     public ResponseEntity<Boolean> deleteById(@PathVariable("id") Integer id) {
+        log.info("deleteById ===> id = {}", id);
         return ResponseEntity.ok(this.modelService.deleteById(id));
     }
 

@@ -1,33 +1,33 @@
 
-### 通过id查询 components
+### 通过id查询
 GET http://localhost:5051/components/1
 
-### 添加 components
+### 添加
 POST http://localhost:5051/components
 Content-Type: application/json
 
 {
   "id": null,
-  "name": null
+  "name": "insertName"
 }
 
-### 删除 components
-DELETE http://localhost:5051/components/1
+### 删除
+DELETE http://localhost:5051/components/10
 
-### 分页查询 components
-GET http://localhost:5051/components/2/5
+### 分页查询
+GET http://localhost:5051/components/0/5
 Content-Type: application/json
 
 {
-  "id": null,
+  "id": 1,
   "name": null
 }
 
-### 修改 components
+### 修改
 PUT http://localhost:5051/components
 Content-Type: application/json
 
 {
-  "id": null,
-  "name": null
+  "id": 2,
+  "name": "changedName"
 }

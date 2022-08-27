@@ -12,6 +12,13 @@
     <artifactId>financial-manage</artifactId>
 
     <dependencies>
+        <!--热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
         <!--引入本项目的其他子模块，制定version为同项目的版本，引入前必须package-->
         <dependency>
             <groupId>com.woniuxy</groupId>

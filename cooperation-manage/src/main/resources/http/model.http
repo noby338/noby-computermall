@@ -1,8 +1,8 @@
 
-### 通过id查询 model
+### 通过id查询
 GET http://localhost:5051/model/5
 
-### 添加 model
+### 添加
 POST http://localhost:5051/model
 Content-Type: application/json
 
@@ -14,10 +14,10 @@ Content-Type: application/json
   "states":1
 }
 
-### 删除 model
+### 删除
 DELETE http://localhost:5051/model/1
 
-### 分页查询 model
+### 分页查询
 GET http://localhost:5051/model/2/5
 Content-Type: application/json
 
@@ -29,7 +29,7 @@ Content-Type: application/json
   "states":1
 }
 
-### 修改 model
+### 修改
 PUT http://localhost:5051/model
 Content-Type: application/json
 

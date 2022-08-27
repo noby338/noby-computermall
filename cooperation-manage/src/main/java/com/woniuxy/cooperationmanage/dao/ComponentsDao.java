@@ -6,10 +6,10 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 /**
- * (Components)表数据库访问层
+ * 各电脑配件(Components)表数据库访问层
  *
  * @author Noby
- * @since 2022-08-26 21:53:36
+ * @since 2022-08-27 19:46:02
  */
 public interface ComponentsDao {
 

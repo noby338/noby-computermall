@@ -8,18 +8,18 @@ Content-Type: application/json
 
 {
   "id": null,
-  "name": "insertName"
+  "name": null
 }
 
 ### 删除
-DELETE http://localhost:5051/components/10
+DELETE http://localhost:5051/components/1
 
 ### 分页查询
-GET http://localhost:5051/components/0/5
+GET http://localhost:5051/components/2/5
 Content-Type: application/json
 
 {
-  "id": 1,
+  "id": null,
   "name": null
 }
 
@@ -28,6 +28,6 @@ PUT http://localhost:5051/components
 Content-Type: application/json
 
 {
-  "id": 2,
-  "name": "changedName"
+  "id": null,
+  "name": null
 }

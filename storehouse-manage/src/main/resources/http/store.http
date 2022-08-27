@@ -1,0 +1,39 @@
+
+### 通过id查询
+GET http://localhost:1011/store/1
+
+### 添加
+POST http://localhost:1011/store
+Content-Type: application/json
+
+{
+  "id": null,
+  "name": null,
+  "componentsId": 1
+}
+
+
+### 删除
+DELETE http://localhost:1011/store/1
+
+### 分页查询
+GET http://localhost:1011/store/2/5
+Content-Type: application/json
+
+{
+  "id": null,
+  "address": null,
+  "num": 1,
+  "totalCapacity": 300,
+  "componentsId": 1
+}
+
+### 修改
+PUT http://localhost:1011/store
+Content-Type: application/json
+
+{
+  "id": null,
+  "name": null,
+  "componentsId": 1
+}

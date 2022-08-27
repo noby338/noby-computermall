@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.financialmanage.dao.PurchaseRecordDao">
+
+    <resultMap type="com.woniuxy.commonentity.entity.PurchaseRecord" id="PurchaseRecordMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="purchaseOrderId" column="purchase_order_id" jdbcType="INTEGER"/>
+        <result property="dateTime" column="date_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="PurchaseRecordMap">
+        select
+          id, purchase_order_id, date_time
+        from purchase_record
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="PurchaseRecordMap">
+        select
+          id, purchase_order_id, date_time
+        from purchase_record
+        <where>
+            <if test="purchaseRecord.id != null">
+                and id = #{purchaseRecord.id}
+            </if>
+            <if test="purchaseRecord.purchaseOrderId != null">
+                and purchase_order_id = #{purchaseRecord.purchaseOrderId}
+            </if>
+            <if test="purchaseRecord.dateTime != null">
+                and date_time = #{purchaseRecord.dateTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from purchase_record
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="purchaseOrderId != null">
+                and purchase_order_id = #{purchaseOrderId}
+            </if>
+            <if test="dateTime != null">
+                and date_time = #{dateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into purchase_record(purchase_order_id, date_time)
+        values (#{purchaseOrderId}, #{dateTime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update purchase_record
+        <set>
+            <if test="purchaseOrderId != null">
+                purchase_order_id = #{purchaseOrderId},
+            </if>
+            <if test="dateTime != null">
+                date_time = #{dateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from purchase_record where id = #{id}
+    </delete>
+
+</mapper>
+

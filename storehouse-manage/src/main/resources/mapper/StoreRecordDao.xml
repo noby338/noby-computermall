@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.storehousemanage.dao.StoreRecordDao">
+
+    <resultMap type="com.woniuxy.commonentity.entity.StoreRecord" id="StoreRecordMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="num" column="num" jdbcType="INTEGER"/>
+        <result property="dateTime" column="date_time" jdbcType="TIMESTAMP"/>
+        <result property="storeId" column="store_id" jdbcType="INTEGER"/>
+        <result property="modelId" column="model_id" jdbcType="INTEGER"/>
+        <association property="store" column="store_id"  javaType="com.woniuxy.commonentity.entity.Store" select="selectStoreById"/>
+        <association property="model" column="model_id"  javaType="com.woniuxy.commonentity.entity.Model" select="selectModelById"/>
+    </resultMap>
+    <select id="selectStoreById" resultType="com.woniuxy.commonentity.entity.Store">
+        select
+            id, components_id, address, num, total_capacity
+        from store
+        where id = #{store_id}
+    </select>
+    <select id="selectModelById" resultType="com.woniuxy.commonentity.entity.Model">
+        select
+            id, name, supplier_id, purchase_price, store_id, num
+        from model
+        where id = #{model_id}
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="StoreRecordMap">
+        select
+          id, num, date_time, store_id, model_id
+        from store_record
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="StoreRecordMap">
+        select
+          id, num, date_time, store_id, model_id
+        from store_record
+        <where>
+            <if test="storeRecord.id != null">
+                and id = #{storeRecord.id}
+            </if>
+            <if test="storeRecord.num != null">
+                and num = #{storeRecord.num}
+            </if>
+            <if test="storeRecord.dateTime != null">
+                and date_time = #{storeRecord.dateTime}
+            </if>
+            <if test="storeRecord.storeId != null">
+                and store_id = #{storeRecord.storeId}
+            </if>
+            <if test="storeRecord.modelId != null">
+                and model_id = #{storeRecord.modelId}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from store_record
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="num != null">
+                and num = #{num}
+            </if>
+            <if test="dateTime != null">
+                and date_time = #{dateTime}
+            </if>
+            <if test="storeId != null">
+                and store_id = #{storeId}
+            </if>
+            <if test="modelId != null">
+                and model_id = #{modelId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into store_record(num, date_time, store_id, model_id)
+        values (#{num}, #{dateTime}, #{storeId}, #{modelId})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update store_record
+        <set>
+            <if test="num != null">
+                num = #{num},
+            </if>
+            <if test="dateTime != null">
+                date_time = #{dateTime},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId},
+            </if>
+            <if test="modelId != null">
+                model_id = #{modelId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from store_record where id = #{id}
+    </delete>
+
+</mapper>
+

@@ -1,9 +1,9 @@
 
 ### 通过id查询
-GET http://localhost:4041/saleCart/2
+GET http://localhost:7071/store/1
 
 ### 添加
-POST http://localhost:4041/saleCart
+POST http://localhost:7071/store
 Content-Type: application/json
 
 {
@@ -14,10 +14,10 @@ Content-Type: application/json
 
 
 ### 删除
-DELETE http://localhost:4041/saleCart/1
+DELETE http://localhost:7071/store/1
 
 ### 分页查询
-GET http://localhost:4041/saleCart/2/5
+GET http://localhost:7071/store/2/5
 Content-Type: application/json
 
 {
@@ -29,7 +29,7 @@ Content-Type: application/json
 }
 
 ### 修改
-PUT http://localhost:4041/saleCart
+PUT http://localhost:7071/store
 Content-Type: application/json
 
 {

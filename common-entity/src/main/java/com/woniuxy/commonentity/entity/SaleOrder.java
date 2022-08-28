@@ -19,14 +19,13 @@ import java.util.List;
 public class SaleOrder implements Serializable {
     private static final long serialVersionUID = -59790555007733403L;
     private Integer id;
-    private Integer phoneNum;
-    private Integer address;
+    private String phoneNum;
+    private String address;
     private Integer status;//1：已下单；2：已付款；3：已发货；4：已收货
     private Integer clientId;
     private Double totalPrice;
 
     private Client client;
-    private List<SaleCartItem> saleCartItemList;
     private List<SaleRecord> saleRecordList;
 
 }

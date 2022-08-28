@@ -6,19 +6,11 @@
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="num" column="num" jdbcType="INTEGER"/>
         <result property="salePrice" column="sale_price" jdbcType="NUMERIC"/>
-        <result property="saleOrderId" column="sale_order_id" jdbcType="INTEGER"/>
         <result property="modelId" column="model_id" jdbcType="INTEGER"/>
         <result property="saleCartId" column="sale_cart_id" jdbcType="INTEGER"/>
-        <association property="saleOrder" column="sale_order_id"  javaType="client" select="selectSaleOrderById"/>
         <association property="model" column="model_id"  javaType="model" select="selectModelById"/>
         <association property="saleCart" column="sale_cart_id"  javaType="saleCart" select="selectSaleCartById"/>
     </resultMap>
-    <select id="selectSaleOrderById" resultType="saleOrder">
-        select
-            id, phone_num, address, total_price, status, client_id
-        from sale_order
-        where id = #{sale_order_id}
-    </select>
     <select id="selectModelById" resultType="model">
         select
             id, name, purchase_price, sale_price, num, supplier_id, store_id
@@ -35,7 +27,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="SaleCartItemMap">
         select
-          id, num, sale_price, sale_order_id, model_id, sale_cart_id
+          id, num, sale_price, model_id, sale_cart_id
         from sale_cart_item
         where id = #{id}
     </select>
@@ -43,7 +35,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="SaleCartItemMap">
         select
-          id, num, sale_price, sale_order_id, model_id, sale_cart_id
+          id, num, sale_price, model_id, sale_cart_id
         from sale_cart_item
         <where>
             <if test="saleCartItem.id != null">
@@ -54,9 +46,6 @@
             </if>
             <if test="saleCartItem.salePrice != null">
                 and sale_price = #{saleCartItem.salePrice}
-            </if>
-            <if test="saleCartItem.saleOrderId != null">
-                and sale_order_id = #{saleCartItem.saleOrderId}
             </if>
             <if test="saleCartItem.modelId != null">
                 and model_id = #{saleCartItem.modelId}
@@ -82,9 +71,6 @@
             <if test="salePrice != null">
                 and sale_price = #{salePrice}
             </if>
-            <if test="saleOrderId != null">
-                and sale_order_id = #{saleOrderId}
-            </if>
             <if test="modelId != null">
                 and model_id = #{modelId}
             </if>
@@ -96,8 +82,8 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into sale_cart_item(num, sale_price, sale_order_id, model_id, sale_cart_id)
-        values (#{num}, #{salePrice}, #{saleOrderId}, #{modelId}, #{saleCartId})
+        insert into sale_cart_item(num, sale_price, model_id, sale_cart_id)
+        values (#{num}, #{salePrice}, #{modelId}, #{saleCartId})
     </insert>
 
     <!--通过主键修改数据-->
@@ -109,9 +95,6 @@
             </if>
             <if test="salePrice != null">
                 sale_price = #{salePrice},
-            </if>
-            <if test="saleOrderId != null">
-                sale_order_id = #{saleOrderId},
             </if>
             <if test="modelId != null">
                 model_id = #{modelId},

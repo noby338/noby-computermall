@@ -22,6 +22,7 @@ public class Client implements Serializable {
     private String name;
     private String phoneNum;
 
+    private SaleCart saleCart;
     private List<ClientAddress> clientAddressList;
     private List<SaleOrder> saleOrderList;
 

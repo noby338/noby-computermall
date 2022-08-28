@@ -840,7 +840,7 @@
               <option name="saveModelName" value="sales-manage" />
               <option name="savePackageName" value="com.woniuxy.salesmanage" />
               <option name="savePath" value="./sales-manage/src/main/java/com/woniuxy/salesmanage" />
-              <option name="templateGroupName" value="" />
+              <option name="templateGroupName" value="NobyWithLog" />
             </TableInfoDTO>
           </value>
         </entry>
@@ -924,25 +924,6 @@
                         </entry>
                       </map>
                     </option>
-                    <option name="name" value="saleOrderId" />
-                    <option name="type" value="java.lang.Integer" />
-                  </ColumnInfoDTO>
-                  <ColumnInfoDTO>
-                    <option name="custom" value="false" />
-                    <option name="ext">
-                      <map>
-                        <entry key="jdbcType">
-                          <value>
-                            <Object />
-                          </value>
-                        </entry>
-                        <entry key="sqlType">
-                          <value>
-                            <Object />
-                          </value>
-                        </entry>
-                      </map>
-                    </option>
                     <option name="name" value="modelId" />
                     <option name="type" value="java.lang.Integer" />
                   </ColumnInfoDTO>
@@ -972,7 +953,7 @@
               <option name="saveModelName" value="sales-manage" />
               <option name="savePackageName" value="com.woniuxy.salesmanage" />
               <option name="savePath" value="./sales-manage/src/main/java/com/woniuxy/salesmanage" />
-              <option name="templateGroupName" value="" />
+              <option name="templateGroupName" value="NobyWithLog" />
             </TableInfoDTO>
           </value>
         </entry>
@@ -1037,7 +1018,7 @@
                       </map>
                     </option>
                     <option name="name" value="address" />
-                    <option name="type" value="java.lang.Integer" />
+                    <option name="type" value="java.lang.String" />
                   </ColumnInfoDTO>
                   <ColumnInfoDTO>
                     <option name="comment" value="1：已下单；2：已付款；3：已发货；4：已收货" />
@@ -1111,7 +1092,7 @@
         <entry key="noby_computermall.sale_order_item">
           <value>
             <TableInfoDTO>
-              <option name="comment" value="出售订单条目" />
+              <option name="comment" value="订单条目表" />
               <option name="fullColumn">
                 <list>
                   <ColumnInfoDTO>
@@ -1190,6 +1171,25 @@
                     <option name="name" value="modelId" />
                     <option name="type" value="java.lang.Integer" />
                   </ColumnInfoDTO>
+                  <ColumnInfoDTO>
+                    <option name="custom" value="false" />
+                    <option name="ext">
+                      <map>
+                        <entry key="jdbcType">
+                          <value>
+                            <Object />
+                          </value>
+                        </entry>
+                        <entry key="sqlType">
+                          <value>
+                            <Object />
+                          </value>
+                        </entry>
+                      </map>
+                    </option>
+                    <option name="name" value="salePrice" />
+                    <option name="type" value="java.lang.Double" />
+                  </ColumnInfoDTO>
                 </list>
               </option>
               <option name="name" value="SaleOrderItem" />
@@ -1197,7 +1197,7 @@
               <option name="saveModelName" value="sales-manage" />
               <option name="savePackageName" value="com.woniuxy.salesmanage" />
               <option name="savePath" value="./sales-manage/src/main/java/com/woniuxy/salesmanage" />
-              <option name="templateGroupName" value="" />
+              <option name="templateGroupName" value="NobyWithLog" />
             </TableInfoDTO>
           </value>
         </entry>

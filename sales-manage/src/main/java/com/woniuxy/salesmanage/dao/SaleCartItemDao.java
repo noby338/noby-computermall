@@ -9,7 +9,7 @@ import java.util.List;
  * 出售购入车条目(SaleCartItem)表数据库访问层
  *
  * @author Noby
- * @since 2022-08-28 15:39:29
+ * @since 2022-08-28 22:45:22
  */
 public interface SaleCartItemDao {
 

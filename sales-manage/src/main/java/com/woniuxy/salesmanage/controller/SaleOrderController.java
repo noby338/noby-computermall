@@ -1,6 +1,9 @@
 package com.woniuxy.salesmanage.controller;
 
-import com.woniuxy.commonentity.entity.SaleOrder;
+import com.woniuxy.commonentity.entity.*;
+import com.woniuxy.salesmanage.service.ClientAddressService;
+import com.woniuxy.salesmanage.service.ClientService;
+import com.woniuxy.salesmanage.service.SaleCartService;
 import com.woniuxy.salesmanage.service.SaleOrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -9,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 出售订单(SaleOrder)表控制层
@@ -25,6 +29,40 @@ public class SaleOrderController {
      */
     @Resource
     private SaleOrderService saleOrderService;
+
+    @Resource
+    private SaleCartService saleCartService;
+
+    @Resource
+    private ClientAddressService clientAddressService;
+
+    @Resource
+    private ClientService clientService;
+
+
+    /**
+     * 添加订单
+     *
+     * @return 单条数据
+     */
+    @GetMapping("placeOrder/{clientId}")
+    public ResponseEntity<SaleOrder> placeOrder(@PathVariable("clientId") int clientId) {
+        log.info("placeOrder ===> clientId = {}",clientId);
+        SaleOrder saleOrder = new SaleOrder();
+        Client client = clientService.queryById(clientId);
+
+        saleOrder.setPhoneNum(client.getPhoneNum());
+        List<ClientAddress> clientAddressList = client.getClientAddressList();
+        for (ClientAddress clientAddress : clientAddressList) {
+            if (clientAddress.getIsDefault() == 1) {
+                saleOrder.setAddress(clientAddress.getAddress());
+            }
+        }
+        saleOrder.setTotalPrice(client.getSaleCart().getTotalPrice());
+        saleOrder.setStatus(1);
+        saleOrder.setClientId(clientId);
+        return ResponseEntity.ok(saleOrderService.insert(saleOrder));
+    }
 
     /**
      * 分页查询

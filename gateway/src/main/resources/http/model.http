@@ -1,0 +1,42 @@
+
+### 通过id查询
+GET http://localhost:7071/model/1
+
+### 添加
+POST http://localhost:7071/model
+Content-Type: application/json
+
+{
+  "id": null,
+  "name": null,
+  "supplierId": null,
+  "price": null,
+  "states":1
+}
+
+### 删除
+DELETE http://localhost:7071/model/1
+
+### 分页查询
+GET http://localhost:7071/model/2/5
+Content-Type: application/json
+
+{
+  "id": null,
+  "name": null,
+  "supplierId": null,
+  "price": null,
+  "states":1
+}
+
+### 修改
+PUT http://localhost:7071/model
+Content-Type: application/json
+
+{
+  "id": null,
+  "name": null,
+  "supplierId": null,
+  "price": null,
+  "states":1
+}

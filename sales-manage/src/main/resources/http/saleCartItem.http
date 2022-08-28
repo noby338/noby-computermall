@@ -8,8 +8,11 @@ Content-Type: application/json
 
 {
   "id": null,
-  "name": null,
-  "componentsId": 1
+  "num": null,
+  "salePrice": null,
+  "saleOrderId": null,
+  "modelId": null,
+  "saleCartId": null
 }
 
 

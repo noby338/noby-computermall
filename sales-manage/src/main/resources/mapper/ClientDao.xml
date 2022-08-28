@@ -6,9 +6,16 @@
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="phoneNum" column="phone_num" jdbcType="VARCHAR"/>
+        <association property="saleCart" column="id"  javaType="saleCart" select="selectSaleCartById"/>
         <collection property="clientAddressList" column="id" ofType="clientAddress" select="selectClientAddressById"/>
         <collection property="saleOrderList" column="id" ofType="saleOrder" select="selectSaleOrderById"/>
     </resultMap>
+    <select id="selectSaleCartById" resultType="saleCart">
+        select
+            id, total_price, client_id
+        from sale_cart
+        where client_id = #{id}
+    </select>
     <select id="selectSaleOrderById" resultType="SaleOrder">
         select
             id, phone_num, address, total_price, status, client_id

@@ -4,13 +4,12 @@
 
     <resultMap type="com.woniuxy.commonentity.entity.SaleOrder" id="SaleOrderMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
-        <result property="phoneNum" column="phone_num" jdbcType="INTEGER"/>
-        <result property="address" column="address" jdbcType="INTEGER"/>
+        <result property="phoneNum" column="phone_num" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
         <result property="status" column="status" jdbcType="INTEGER"/>
         <result property="clientId" column="client_id" jdbcType="INTEGER"/>
         <result property="totalPrice" column="total_price" jdbcType="NUMERIC"/>
         <association property="client" column="client_id"  javaType="client" select="selectClientById"/>
-        <collection property="saleCartItemList" column="id" ofType="saleCartItem" select="selectSaleCartItemById"/>
         <collection property="saleRecordList" column="id" ofType="saleRecord" select="selectSaleRecordById"/>
     </resultMap>
     <select id="selectClientById" resultType="client">
@@ -18,12 +17,6 @@
             id, name, phone_num
         from client
         where id = #{client_id}
-    </select>
-    <select id="selectSaleCartItemById" resultType="saleCartItem">
-        select
-            id, num, sale_price, sale_order_id, model_id, sale_cart_id
-        from sale_cart_item
-        where sale_cart_id=#{id};
     </select>
     <select id="selectSaleRecordById" resultType="saleRecord">
         select
@@ -52,7 +45,7 @@
             <if test="saleOrder.phoneNum != null">
                 and phone_num = #{saleOrder.phoneNum}
             </if>
-            <if test="saleOrder.address != null">
+            <if test="saleOrder.address != null and saleOrder.address != ''">
                 and address = #{saleOrder.address}
             </if>
             <if test="saleOrder.status != null">
@@ -79,7 +72,7 @@
             <if test="phoneNum != null">
                 and phone_num = #{phoneNum}
             </if>
-            <if test="address != null">
+            <if test="address != null and address != ''">
                 and address = #{address}
             </if>
             <if test="status != null">
@@ -107,7 +100,7 @@
             <if test="phoneNum != null">
                 phone_num = #{phoneNum},
             </if>
-            <if test="address != null">
+            <if test="address != null and address != ''">
                 address = #{address},
             </if>
             <if test="status != null">

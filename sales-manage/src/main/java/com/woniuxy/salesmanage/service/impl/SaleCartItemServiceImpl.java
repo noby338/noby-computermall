@@ -3,10 +3,11 @@ package com.woniuxy.salesmanage.service.impl;
 import com.woniuxy.commonentity.entity.SaleCartItem;
 import com.woniuxy.salesmanage.dao.SaleCartItemDao;
 import com.woniuxy.salesmanage.service.SaleCartItemService;
-import org.springframework.stereotype.Service;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
@@ -17,9 +18,11 @@ import javax.annotation.Resource;
  * @since 2022-08-28 15:39:29
  */
 @Service("saleCartItemService")
+@Slf4j
 public class SaleCartItemServiceImpl implements SaleCartItemService {
     @Resource
     private SaleCartItemDao saleCartItemDao;
+
 
     /**
      * 通过ID查询单条数据

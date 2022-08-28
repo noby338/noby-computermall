@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.salesmanage.dao.ClientAddressDao">
+
+    <resultMap type="com.woniuxy.commonentity.entity.ClientAddress" id="ClientAddressMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="clientId" column="client_id" jdbcType="INTEGER"/>
+        <result property="isDefault" column="is_default" jdbcType="INTEGER"/>
+        <association property="client" column="client_id"  javaType="client" select="selectClientById"/>
+    </resultMap>
+    <select id="selectClientById" resultType="client">
+        select
+            id, name, phone_num
+        from client
+        where id = #{client_id}
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ClientAddressMap">
+        select
+          id, address, client_id, is_default
+        from client_address
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ClientAddressMap">
+        select
+          id, address, client_id, is_default
+        from client_address
+        <where>
+            <if test="clientAddress.id != null">
+                and id = #{clientAddress.id}
+            </if>
+            <if test="clientAddress.address != null and clientAddress.address != ''">
+                and address = #{clientAddress.address}
+            </if>
+            <if test="clientAddress.clientId != null">
+                and client_id = #{clientAddress.clientId}
+            </if>
+            <if test="clientAddress.isDefault != null">
+                and is_default = #{clientAddress.isDefault}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from client_address
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="address != null and address != ''">
+                and address = #{address}
+            </if>
+            <if test="clientId != null">
+                and client_id = #{clientId}
+            </if>
+            <if test="isDefault != null">
+                and is_default = #{isDefault}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into client_address(address, client_id, is_default)
+        values (#{address}, #{clientId}, #{isDefault})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update client_address
+        <set>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="clientId != null">
+                client_id = #{clientId},
+            </if>
+            <if test="isDefault != null">
+                is_default = #{isDefault},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from client_address where id = #{id}
+    </delete>
+
+</mapper>
+

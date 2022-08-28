@@ -1,0 +1,39 @@
+
+### 通过id查询
+GET http://localhost:4041/saleCartItem/1
+
+### 添加
+POST http://localhost:4041/saleCartItem
+Content-Type: application/json
+
+{
+  "id": null,
+  "name": null,
+  "componentsId": 1
+}
+
+
+### 删除
+DELETE http://localhost:4041/saleCartItem/1
+
+### 分页查询
+GET http://localhost:4041/saleCartItem/2/5
+Content-Type: application/json
+
+{
+  "id": null,
+  "address": null,
+  "num": 1,
+  "totalCapacity": 300,
+  "componentsId": 1
+}
+
+### 修改
+PUT http://localhost:4041/saleCartItem
+Content-Type: application/json
+
+{
+  "id": null,
+  "name": null,
+  "componentsId": 1
+}

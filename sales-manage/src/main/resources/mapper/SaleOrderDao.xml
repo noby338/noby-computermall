@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.salesmanage.dao.SaleOrderDao">
+
+    <resultMap type="com.woniuxy.commonentity.entity.SaleOrder" id="SaleOrderMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="phoneNum" column="phone_num" jdbcType="INTEGER"/>
+        <result property="address" column="address" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="clientId" column="client_id" jdbcType="INTEGER"/>
+        <result property="totalPrice" column="total_price" jdbcType="NUMERIC"/>
+        <association property="client" column="client_id"  javaType="client" select="selectClientById"/>
+        <collection property="saleCartItemList" column="id" ofType="saleCartItem" select="selectSaleCartItemById"/>
+        <collection property="saleRecordList" column="id" ofType="saleRecord" select="selectSaleRecordById"/>
+    </resultMap>
+    <select id="selectClientById" resultType="client">
+        select
+            id, name, phone_num
+        from client
+        where id = #{client_id}
+    </select>
+    <select id="selectSaleCartItemById" resultType="saleCartItem">
+        select
+            id, num, sale_price, sale_order_id, model_id, sale_cart_id
+        from sale_cart_item
+        where sale_cart_id=#{id};
+    </select>
+    <select id="selectSaleRecordById" resultType="saleRecord">
+        select
+            id, date_time, record_type, sale_order_id
+        from sale_record
+        where sale_order_id=#{id};
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SaleOrderMap">
+        select
+          id, phone_num, address, status, client_id, total_price
+        from sale_order
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="SaleOrderMap">
+        select
+          id, phone_num, address, status, client_id, total_price
+        from sale_order
+        <where>
+            <if test="saleOrder.id != null">
+                and id = #{saleOrder.id}
+            </if>
+            <if test="saleOrder.phoneNum != null">
+                and phone_num = #{saleOrder.phoneNum}
+            </if>
+            <if test="saleOrder.address != null">
+                and address = #{saleOrder.address}
+            </if>
+            <if test="saleOrder.status != null">
+                and status = #{saleOrder.status}
+            </if>
+            <if test="saleOrder.clientId != null">
+                and client_id = #{saleOrder.clientId}
+            </if>
+            <if test="saleOrder.totalPrice != null">
+                and total_price = #{saleOrder.totalPrice}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from sale_order
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="phoneNum != null">
+                and phone_num = #{phoneNum}
+            </if>
+            <if test="address != null">
+                and address = #{address}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="clientId != null">
+                and client_id = #{clientId}
+            </if>
+            <if test="totalPrice != null">
+                and total_price = #{totalPrice}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into sale_order(phone_num, address, status, client_id, total_price)
+        values (#{phoneNum}, #{address}, #{status}, #{clientId}, #{totalPrice})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update sale_order
+        <set>
+            <if test="phoneNum != null">
+                phone_num = #{phoneNum},
+            </if>
+            <if test="address != null">
+                address = #{address},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="clientId != null">
+                client_id = #{clientId},
+            </if>
+            <if test="totalPrice != null">
+                total_price = #{totalPrice},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from sale_order where id = #{id}
+    </delete>
+
+</mapper>
+

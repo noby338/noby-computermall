@@ -3,33 +3,62 @@
   <ID>DATABASE</ID>
   <OriginalElement>afa326cc-55ab-4e33-8620-6b23dd0b77bb.SCHEMA:noby_computermall</OriginalElement>
   <nodes>
+    <node x="898.5" y="338.5">afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.sale_order</node>
     <node x="262.0" y="151.0">afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.supplier</node>
-    <node x="285.875" y="583.5">afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.purchase_order_item</node>
-    <node x="428.5" y="338.5">afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.purchase_order</node>
-    <node x="651.5" y="139.5">afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.client</node>
+    <node x="666.0" y="151.0">afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.client</node>
     <node x="0.0" y="128.0">afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.store</node>
+    <node x="829.5" y="595.0">afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.sale_record</node>
     <node x="136.5" y="327.0">afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.model</node>
-    <node x="165.25" y="0.0">afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.components</node>
-    <node x="519.0" y="595.0">afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.purchase_record</node>
-    <node x="814.5" y="373.0">afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.client_address</node>
-    <node x="116.875" y="572.0">afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.store_record</node>
+    <node x="153.66911764705884" y="0.0">afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.components</node>
+    <node x="428.5" y="373.0">afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.sale_cart</node>
+    <node x="627.5" y="361.5">afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.client_address</node>
+    <node x="113.16911764705884" y="583.5">afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.store_record</node>
+    <node x="397.91911764705884" y="572.0">afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.sale_cart_item</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.purchase_order_item" target="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.purchase_order" relationship="REFERENCES">
-      <point x="46.25" y="-62.0" />
-      <point x="424.625" y="546.0" />
-      <point x="611.5" y="546.0" />
-      <point x="0.0" y="85.0" />
-    </edge>
     <edge source="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.store_record" target="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.store" relationship="REFERENCES">
       <point x="-37.25" y="-73.5" />
-      <point x="154.125" y="546.0" />
+      <point x="150.41911764705884" y="546.0" />
       <point x="121.0" y="546.0" />
       <point x="0.0" y="73.5" />
     </edge>
-    <edge source="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.purchase_record" target="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.purchase_order" relationship="REFERENCES">
+    <edge source="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.store_record" target="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.model" relationship="REFERENCES">
+      <point x="37.25" y="-73.5" />
+      <point x="224.91911764705884" y="546.0" />
+      <point x="272.5" y="546.0" />
+      <point x="0.0" y="96.5" />
+    </edge>
+    <edge source="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.sale_record" target="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.sale_order" relationship="REFERENCES">
+      <point x="0.0" y="-62.0" />
+      <point x="0.0" y="85.0" />
+    </edge>
+    <edge source="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.sale_cart" target="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.client" relationship="REFERENCES">
       <point x="0.0" y="-50.5" />
+      <point x="518.0" y="301.0" />
+      <point x="753.0" y="301.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.store" target="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.components" relationship="REFERENCES">
+      <point x="0.0" y="-73.5" />
+      <point x="121.0" y="103.0" />
+      <point x="221.66911764705884" y="103.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.sale_cart_item" target="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.model" relationship="REFERENCES">
+      <point x="-80.0" y="-85.0" />
+      <point x="437.91911764705884" y="546.0" />
+      <point x="272.5" y="546.0" />
+      <point x="0.0" y="96.5" />
+    </edge>
+    <edge source="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.sale_cart_item" target="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.sale_cart" relationship="REFERENCES">
+      <point x="0.0" y="-85.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.sale_cart_item" target="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.sale_order" relationship="REFERENCES">
+      <point x="80.0" y="-85.0" />
+      <point x="597.9191176470588" y="546.0" />
+      <point x="1081.5" y="546.0" />
       <point x="0.0" y="85.0" />
     </edge>
     <edge source="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.model" target="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.supplier" relationship="REFERENCES">
@@ -41,20 +70,12 @@
     <edge source="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.supplier" target="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.components" relationship="REFERENCES">
       <point x="0.0" y="-50.5" />
       <point x="345.5" y="103.0" />
-      <point x="233.25" y="103.0" />
+      <point x="221.66911764705884" y="103.0" />
       <point x="0.0" y="39.0" />
     </edge>
-    <edge source="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.store_record" target="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.model" relationship="REFERENCES">
-      <point x="37.25" y="-73.5" />
-      <point x="228.625" y="546.0" />
-      <point x="272.5" y="546.0" />
-      <point x="0.0" y="96.5" />
-    </edge>
     <edge source="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.client_address" target="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.client" relationship="REFERENCES">
-      <point x="0.0" y="-50.5" />
-      <point x="888.5" y="301.0" />
-      <point x="750.0" y="301.0" />
-      <point x="0.0" y="62.0" />
+      <point x="0.0" y="-62.0" />
+      <point x="0.0" y="50.5" />
     </edge>
     <edge source="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.model" target="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.store" relationship="REFERENCES">
       <point x="-68.0" y="-96.5" />
@@ -62,29 +83,15 @@
       <point x="121.0" y="301.0" />
       <point x="0.0" y="73.5" />
     </edge>
-    <edge source="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.purchase_order" target="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.client" relationship="REFERENCES">
+    <edge source="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.sale_order" target="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.client" relationship="REFERENCES">
       <point x="0.0" y="-85.0" />
-      <point x="611.5" y="301.0" />
-      <point x="750.0" y="301.0" />
-      <point x="0.0" y="62.0" />
-    </edge>
-    <edge source="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.purchase_order_item" target="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.model" relationship="REFERENCES">
-      <point x="-46.25" y="-62.0" />
-      <point x="332.125" y="546.0" />
-      <point x="272.5" y="546.0" />
-      <point x="0.0" y="96.5" />
-    </edge>
-    <edge source="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.store" target="afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.components" relationship="REFERENCES">
-      <point x="0.0" y="-73.5" />
-      <point x="121.0" y="103.0" />
-      <point x="233.25" y="103.0" />
-      <point x="0.0" y="39.0" />
+      <point x="1081.5" y="301.0" />
+      <point x="753.0" y="301.0" />
+      <point x="0.0" y="50.5" />
     </edge>
   </edges>
-  <settings layout="分层" zoom="0.9553450608930988" showDependencies="false" x="481.5" y="359.5" />
-  <SelectedNodes>
-    <node>afa326cc-55ab-4e33-8620-6b23dd0b77bb.TABLE:noby_computermall.model</node>
-  </SelectedNodes>
+  <settings layout="分层" zoom="0.7880354505169868" showDependencies="false" x="667.0" y="371.0" />
+  <SelectedNodes />
   <Categories>
     <Category>列</Category>
     <Category>注释</Category>

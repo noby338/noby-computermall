@@ -28,7 +28,7 @@ CREATE TABLE `client` (
   `phone_num` varchar(15) DEFAULT NULL,
   `default_address` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8 COMMENT='商户';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='商户';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,7 +79,7 @@ CREATE TABLE `components` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='各电脑配件';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,13 +102,17 @@ DROP TABLE IF EXISTS `model`;
 CREATE TABLE `model` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(40) DEFAULT NULL,
+  `purchase_price` decimal(8,2) DEFAULT NULL COMMENT '进货价格',
+  `sale_price` decimal(8,2) DEFAULT NULL COMMENT '出售价格',
+  `num` int(11) DEFAULT NULL COMMENT '剩余数量',
   `supplier_id` int(11) DEFAULT NULL,
-  `price` decimal(8,2) DEFAULT NULL,
-  `states` int(11) DEFAULT NULL COMMENT '1：正常；2：缺货；',
+  `store_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `model_supplier_id_fk` (`supplier_id`),
+  KEY `model_store_id_fk` (`store_id`),
+  CONSTRAINT `model_store_id_fk` FOREIGN KEY (`store_id`) REFERENCES `store` (`id`),
   CONSTRAINT `model_supplier_id_fk` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COMMENT='各配件型号';
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COMMENT='各配件型号';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,7 +121,7 @@ CREATE TABLE `model` (
 
 LOCK TABLES `model` WRITE;
 /*!40000 ALTER TABLE `model` DISABLE KEYS */;
-INSERT INTO `model` VALUES (1,'i7 8700k',1,2899.00,1),(2,'i5 8400',1,2100.00,1),(3,'Ryzen 5 5600X',2,1500.00,1),(4,'Ryzen 9 3900X',2,1340.00,1),(5,'PRIME H510M-F',3,790.00,1),(6,'PRIME H610M-K',3,870.00,1),(7,'MAG B660M MORTAR WIFI DDR4',4,980.00,0),(8,'MPG B550I GAMING EDGE MAX Wifi',4,1050.00,1),(9,'B660M GAMING DDR4',5,580.00,1),(10,'H610M H DDR4 ',5,460.00,1),(11,'GeForce RTX 3070 Ti 8G 1770',6,4050.00,1),(12,'1660s GeForce GTX 1660 SUPER',6,1300.00,1),(13,'GeForce RTX 3060 12GB ',7,3050.00,1),(14,'GeForce RTX 3070 Ti 8G',7,3899.00,1),(15,'RX 6950XT',8,3799.00,1),(16,'6900XT',8,3299.00,1),(17,'GAMER RGB DDR5 32GB(16GB×2)',9,560.00,1),(18,'HOF Pro RGB DDR4 3600 32GB(8GB×4)',9,850.00,1),(19,'XPG DDR4 3200 8G',10,699.00,1),(20,'万紫千红 DDR4 2400 8G',10,799.00,1),(21,'红靡战甲 Master大师 DDR4 3200 32GB(16GB×2)',11,999.00,1),(22,'炫光RGB DDR4 3200 16GB(8GB×2)',11,850.00,1),(23,'iGame DDR4 3000 8GB',12,759.00,1),(24,'CVN Guardian 捍卫者 RGB DDR5 6000 16GB',12,1050.00,1),(25,'970 EVO Plus',13,2020.00,1),(26,'970 PRO',13,1200.00,0),(27,'My Passport SSD',14,999.00,1),(28,'WD_BLACK P50',14,2222.11,1),(29,'4TB 64MB 5900R',15,399.00,1),(30,'4TB 256MB 5400',15,359.00,1),(31,'Q300L',16,569.00,1),(32,'MB520',16,499.00,1),(33,'平头哥M2',17,659.00,1),(34,'朱雀air',17,399.00,1),(35,'小钢炮X500',18,109.00,1),(36,'冰龙400mini',18,79.00,1),(37,'DF700 FLUX',19,80.00,1),(38,'GX300 - GX',19,101.00,1),(39,'H100i RGB PRO XT',20,304.00,1),(40,'CWCH60',20,78.00,0),(41,'NH-D15',21,108.00,1),(42,'NH-D15S',21,201.00,1),(43,'S27R356FHC',22,899.00,1),(44,'C49HG90DMC',22,7999.00,1),(45,'LG 27GP850',23,2799.00,1),(46,'LG 27UL650-W',23,2099.00,1);
+INSERT INTO `model` VALUES (1,'i7 8700k',2899.00,4058.60,120,1,1),(2,'i5 8400',2100.00,2940.00,132,1,1),(3,'Ryzen 5 5600X',1500.00,2100.00,342,2,2),(4,'Ryzen 9 3900X',1340.00,1876.00,221,2,2),(5,'PRIME H510M-F',790.00,1106.00,68,3,3),(6,'PRIME H610M-K',870.00,1218.00,125,3,3),(7,'MAG B660M MORTAR WIFI DDR4',980.00,1372.00,40,4,4),(8,'MPG B550I GAMING EDGE MAX Wifi',1050.00,1470.00,35,4,4),(9,'B660M GAMING DDR4',580.00,812.00,302,5,8),(10,'H610M H DDR4 ',460.00,644.00,521,5,9),(11,'GeForce RTX 3070 Ti 8G 1770',4050.00,5670.00,409,6,5),(12,'1660s GeForce GTX 1660 SUPER',1300.00,1820.00,413,6,5),(13,'GeForce RTX 3060 12GB ',3050.00,4270.00,290,7,5),(14,'GeForce RTX 3070 Ti 8G',3899.00,5458.60,896,7,5),(15,'RX 6950XT',3799.00,5318.60,267,8,5),(16,'6900XT',3299.00,4618.60,468,8,5),(17,'GAMER RGB DDR5 32GB(16GB×2)',560.00,784.00,329,9,6),(18,'HOF Pro RGB DDR4 3600 32GB(8GB×4)',850.00,1190.00,134,9,6),(19,'XPG DDR4 3200 8G',699.00,978.60,560,10,7),(20,'万紫千红 DDR4 2400 8G',799.00,1118.60,356,10,7),(21,'红靡战甲 Master大师 DDR4 3200 32GB(16GB×2)',999.00,1398.60,820,11,7),(22,'炫光RGB DDR4 3200 16GB(8GB×2)',850.00,1190.00,432,11,7),(23,'iGame DDR4 3000 8GB',759.00,1062.60,346,12,6),(24,'CVN Guardian 捍卫者 RGB DDR5 6000 16GB',1050.00,1470.00,121,12,6),(25,'970 EVO Plus',2020.00,2828.00,568,13,8),(26,'970 PRO',1200.00,1680.00,347,13,8),(27,'My Passport SSD',999.00,1398.60,900,14,9),(28,'WD_BLACK P50',2222.11,3110.95,60,14,9),(29,'4TB 64MB 5900R',399.00,558.60,302,15,8),(30,'4TB 256MB 5400',359.00,502.60,521,15,8),(31,'Q300L',569.00,796.60,409,16,10),(32,'MB520',499.00,698.60,413,16,10),(33,'平头哥M2',659.00,922.60,290,17,11),(34,'朱雀air',399.00,558.60,896,17,12),(35,'小钢炮X500',109.00,152.60,367,18,13),(36,'冰龙400mini',79.00,110.60,468,18,13),(37,'DF700 FLUX',80.00,112.00,329,19,14),(38,'GX300 - GX',101.00,141.40,134,19,14),(39,'H100i RGB PRO XT',304.00,425.60,560,20,15),(40,'CWCH60',78.00,109.20,356,20,15),(41,'NH-D15',108.00,151.20,290,21,16),(42,'NH-D15S',201.00,281.40,896,21,16),(43,'S27R356FHC',899.00,1258.60,367,22,17),(44,'C49HG90DMC',7999.00,11198.60,468,22,18),(45,'LG 27GP850',2799.00,3918.60,329,23,19),(46,'LG 27UL650-W',2099.00,2938.60,329,23,20);
 /*!40000 ALTER TABLE `model` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,11 +134,11 @@ DROP TABLE IF EXISTS sale_order;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `purchase_order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `client_id` int(11) DEFAULT NULL,
   `phone_num` int(11) DEFAULT NULL,
   `address` int(11) DEFAULT NULL,
   `total_money` decimal(10,2) DEFAULT NULL,
   `status` int(11) DEFAULT NULL COMMENT '1：未付款；2：已付款；3：已发货；4：已收货',
+  `client_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `purchase_order_client_id_fk` (`client_id`),
   CONSTRAINT `purchase_order_client_id_fk` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`)
@@ -159,9 +163,9 @@ DROP TABLE IF EXISTS sale_cart_item;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `purchase_order_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `num` int(11) DEFAULT NULL,
   `purchase_order_id` int(11) DEFAULT NULL,
   `model_id` int(11) DEFAULT NULL,
-  `num` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `purchase_order_item_model_id_fk` (`model_id`),
   KEY `purchase_order_item_purchase_order_id_fk` (`purchase_order_id`),
@@ -188,8 +192,8 @@ DROP TABLE IF EXISTS sale_record;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `purchase_record` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `purchase_order_id` int(11) DEFAULT NULL,
   `date_time` datetime DEFAULT NULL,
+  `purchase_order_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `purchase_record_model_id_fk` (`purchase_order_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='采购记录';
@@ -201,7 +205,7 @@ CREATE TABLE `purchase_record` (
 
 LOCK TABLES sale_record WRITE;
 /*!40000 ALTER TABLE sale_record DISABLE KEYS */;
-INSERT INTO sale_record VALUES (1,1,'2021-12-24 00:50:31'),(2,2,'2022-03-11 08:12:46'),(3,3,'2021-07-22 04:51:30'),(4,4,'2022-01-04 20:23:26'),(5,5,'2020-11-15 19:43:16'),(6,6,'2021-02-03 19:13:18'),(7,7,'2021-10-12 03:44:50'),(8,8,'2022-02-04 14:01:08'),(9,9,'2021-03-14 02:44:33'),(10,10,'2022-06-13 15:55:39'),(11,11,'2022-02-18 20:29:17'),(12,12,'2022-05-29 17:38:32'),(13,13,'2022-08-01 02:57:55'),(14,14,'2021-02-27 17:43:57'),(15,15,'2021-05-04 07:04:44'),(16,16,'2021-08-28 04:38:49'),(17,17,'2021-03-11 21:10:09'),(18,18,'2021-07-29 05:00:48'),(19,19,'2020-11-04 00:54:01'),(20,20,'2021-10-02 17:45:38');
+INSERT INTO sale_record VALUES (1,'2021-12-24 00:50:31',1),(2,'2022-03-11 08:12:46',2),(3,'2021-07-22 04:51:30',3),(4,'2022-01-04 20:23:26',4),(5,'2020-11-15 19:43:16',5),(6,'2021-02-03 19:13:18',6),(7,'2021-10-12 03:44:50',7),(8,'2022-02-04 14:01:08',8),(9,'2021-03-14 02:44:33',9),(10,'2022-06-13 15:55:39',10),(11,'2022-02-18 20:29:17',11),(12,'2022-05-29 17:38:32',12),(13,'2022-08-01 02:57:55',13),(14,'2021-02-27 17:43:57',14),(15,'2021-05-04 07:04:44',15),(16,'2021-08-28 04:38:49',16),(17,'2021-03-11 21:10:09',17),(18,'2021-07-29 05:00:48',18),(19,'2020-11-04 00:54:01',19),(20,'2021-10-02 17:45:38',20);
 /*!40000 ALTER TABLE sale_record ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,10 +218,10 @@ DROP TABLE IF EXISTS `store`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `store` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `components_id` int(11) DEFAULT NULL,
   `address` varchar(40) DEFAULT NULL,
-  `num` int(11) DEFAULT NULL,
-  `total_capacity` int(11) DEFAULT NULL,
+  `num` int(11) DEFAULT NULL COMMENT '已用容量',
+  `total_capacity` int(11) DEFAULT NULL COMMENT '仓库总容量',
+  `components_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `store_components_id_fk` (`components_id`),
   CONSTRAINT `store_components_id_fk` FOREIGN KEY (`components_id`) REFERENCES `components` (`id`)
@@ -230,34 +234,39 @@ CREATE TABLE `store` (
 
 LOCK TABLES `store` WRITE;
 /*!40000 ALTER TABLE `store` DISABLE KEYS */;
-INSERT INTO `store` VALUES (1,1,'浙江省杭州市清河武街S座 986711',1820,2000),(2,1,'河南省北京县梁平冯路k座 741686',1432,2000),(3,2,'吉林省建华市清河昆明路m座 690686',2346,3000),(4,2,'海南省秀梅县沙湾兰州街M座 412163',2121,3000),(5,3,'山西省静县大兴李路e座 535535',568,1000),(6,4,'河南省莹市滨城大冶路Z座 475428',1347,2000),(7,4,'陕西省彬县朝阳陈街r座 170899',900,1500),(8,5,'福建省齐齐哈尔县怀柔关岭街q座 353070',2060,3000),(9,5,'北京市勇县花溪杨街t座 204543',1302,1500),(10,6,'黑龙江省斌市清河赵街B座 783233',521,900),(11,6,'重庆市倩县清浦海口街N座 565278',409,800),(12,6,'宁夏回族自治区辛集市清浦通辽街f座 840284',413,1000),(13,7,'浙江省凤英县花溪上海街q座 477565',290,1500),(14,7,'河北省汕尾市孝南杜街H座 105965',896,1500),(15,8,'台湾省惠州市黄浦六盘水街r座 852369',2367,3000),(16,8,'香港特别行政区长沙县海港陈街m座 694599',468,3000),(17,9,'西藏自治区琴县门头沟熊路q座 534276',329,500),(18,9,'天津市鑫县东丽张街x座 897738',134,500),(19,9,'山西省秀兰县徐汇王街c座 853016',560,600),(20,9,'青海省淑兰市大东李街M座 242581',356,700);
+INSERT INTO `store` VALUES (1,'浙江省杭州市清河武街S座 986711',252,2000,1),(2,'河南省北京县梁平冯路k座 741686',563,2000,1),(3,'吉林省建华市清河昆明路m座 690686',193,3000,2),(4,'海南省秀梅县沙湾兰州街M座 412163',75,3000,2),(5,'山西省静县大兴李路e座 535535',2743,3000,3),(6,'河南省莹市滨城大冶路Z座 475428',930,2000,4),(7,'陕西省彬县朝阳陈街r座 170899',2168,1500,4),(8,'福建省齐齐哈尔县怀柔关岭街q座 353070',2040,3000,5),(9,'北京市勇县花溪杨街t座 204543',1481,1500,5),(10,'黑龙江省斌市清河赵街B座 783233',822,900,6),(11,'重庆市倩县清浦海口街N座 565278',290,800,6),(12,'宁夏回族自治区辛集市清浦通辽街f座 840284',896,1000,6),(13,'浙江省凤英县花溪上海街q座 477565',835,1500,7),(14,'河北省汕尾市孝南杜街H座 105965',463,1500,7),(15,'台湾省惠州市黄浦六盘水街r座 852369',916,3000,8),(16,'香港特别行政区长沙县海港陈街m座 694599',1186,3000,8),(17,'西藏自治区琴县门头沟熊路q座 534276',367,500,9),(18,'天津市鑫县东丽张街x座 897738',468,500,9),(19,'山西省秀兰县徐汇王街c座 853016',329,600,9),(20,'青海省淑兰市大东李街M座 242581',329,700,9);
 /*!40000 ALTER TABLE `store` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `student`
+-- Table structure for table `store_record`
 --
 
-DROP TABLE IF EXISTS `student`;
+DROP TABLE IF EXISTS `store_record`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `student` (
+CREATE TABLE `store_record` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) DEFAULT NULL,
-  `age` int(11) DEFAULT NULL,
-  `gender` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+  `num` int(11) DEFAULT NULL,
+  `date_time` datetime DEFAULT NULL,
+  `store_id` int(11) DEFAULT NULL,
+  `model_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `store_record_model_id_fk` (`model_id`),
+  KEY `store_record_store_id_fk` (`store_id`),
+  CONSTRAINT `store_record_model_id_fk` FOREIGN KEY (`model_id`) REFERENCES `model` (`id`),
+  CONSTRAINT `store_record_store_id_fk` FOREIGN KEY (`store_id`) REFERENCES `store` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COMMENT='出库入库记录';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `student`
+-- Dumping data for table `store_record`
 --
 
-LOCK TABLES `student` WRITE;
-/*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (1,'杨莹',38,0),(2,'吴玉',28,1),(3,'宋龙',26,0),(4,'黄红',25,0),(5,'王亮',23,1),(6,'任欢',29,1),(7,'李建平',18,0),(8,'孙淑兰',21,1),(9,'张秀英',30,1),(10,'王海燕',29,0),(11,'陈杰',40,0),(12,'张云',33,1),(13,'李丽娟',26,0),(14,'朱晨',39,1),(15,'李玉英',33,1),(16,'黄兵',19,1),(17,'胡丹丹',24,1),(18,'张刚',37,0),(19,'李冬梅',19,1),(20,'孟慧',28,0),(21,'金桂兰',31,1),(22,'江琴',28,1),(23,'赵琴',23,1),(24,'陈凯',36,0),(25,'廖莹',35,1),(26,'戴飞',29,1),(27,'李利',26,1),(28,'邓红',25,1),(29,'李斌',19,0),(30,'吴晶',35,1);
-/*!40000 ALTER TABLE `student` ENABLE KEYS */;
+LOCK TABLES `store_record` WRITE;
+/*!40000 ALTER TABLE `store_record` DISABLE KEYS */;
+INSERT INTO `store_record` VALUES (1,-15,'2022-05-31 10:02:19',14,10),(2,39,'2021-11-28 01:03:44',14,5),(3,200,'2022-03-31 02:31:08',20,16),(4,-97,'2021-09-10 02:14:43',14,11),(5,205,'2022-05-16 08:52:02',8,16),(6,209,'2021-09-13 09:06:47',3,17),(7,-65,'2022-06-18 13:23:13',2,9),(8,-76,'2022-03-04 21:48:55',2,18),(9,-10,'2021-09-28 00:03:07',11,45),(10,-224,'2022-04-27 12:37:13',17,42),(11,236,'2022-06-11 09:04:04',15,45),(12,-143,'2021-12-16 06:58:28',18,18),(13,-251,'2022-06-24 19:51:05',10,6),(14,270,'2021-10-31 08:22:14',1,6),(15,-144,'2022-05-30 10:56:47',14,25),(16,-145,'2022-03-26 01:04:14',7,27),(17,7,'2022-02-09 01:52:12',9,4),(18,36,'2022-06-05 10:11:19',5,5),(19,-239,'2022-03-02 22:37:36',2,34),(20,-2,'2021-09-24 05:39:20',4,38),(21,-250,'2022-01-18 20:28:03',19,44),(22,-191,'2021-09-26 04:35:17',5,8),(23,298,'2021-08-27 23:06:54',19,25),(24,-237,'2022-08-12 09:37:32',10,31),(25,279,'2021-09-10 20:25:15',9,33),(26,42,'2022-07-20 01:42:24',19,45),(27,-72,'2021-12-08 10:28:44',18,40),(28,-64,'2021-09-08 05:24:58',18,8),(29,-289,'2021-11-30 04:40:04',12,46),(30,146,'2022-05-25 04:31:12',12,18),(31,-255,'2021-09-15 07:20:17',8,44),(32,-177,'2022-07-26 11:05:32',20,3),(33,119,'2021-10-14 00:46:11',14,6),(34,160,'2022-05-12 02:35:36',17,4),(35,215,'2022-02-03 14:18:19',9,17),(36,265,'2022-04-02 09:43:29',18,4),(37,-76,'2022-04-16 02:59:56',3,30),(38,103,'2021-09-20 02:41:17',17,20),(39,-54,'2022-07-12 10:04:29',7,16),(40,-206,'2022-05-25 08:12:47',8,21);
+/*!40000 ALTER TABLE `store_record` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -296,4 +305,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-08-27  1:44:04
+-- Dump completed on 2022-08-28  1:45:24

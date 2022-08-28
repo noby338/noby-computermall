@@ -16,7 +16,7 @@ spring:
       server-addr: localhost:8848
 
 mybatis:
-  type-aliases-package: com.woniuxy.financialmanage.entity
+  type-aliases-package: com.woniuxy.commonentity.entity
   mapper-locations: classpath:/mapper/*Dao.xml
 
 

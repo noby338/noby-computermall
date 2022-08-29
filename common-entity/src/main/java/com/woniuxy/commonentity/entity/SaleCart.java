@@ -23,6 +23,6 @@ public class SaleCart implements Serializable {
     private Integer clientId;
 
     private Client client;
-    private List<SaleCartItem> saleCartItemList;
+    private List<SaleCartOrderItem> saleCartOrderItemList;
 }
 

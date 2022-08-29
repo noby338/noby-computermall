@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.woniuxy.salesmanage.dao.SaleCartItemDao">
+<mapper namespace="com.woniuxy.salesmanage.dao.SaleCartOrderItemDao">
 
-    <resultMap type="com.woniuxy.commonentity.entity.SaleCartItem" id="SaleCartItemMap">
+    <resultMap type="com.woniuxy.commonentity.entity.SaleCartOrderItem" id="SaleCartOrderItemMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="num" column="num" jdbcType="INTEGER"/>
         <result property="salePrice" column="sale_price" jdbcType="NUMERIC"/>
         <result property="modelId" column="model_id" jdbcType="INTEGER"/>
         <result property="saleCartId" column="sale_cart_id" jdbcType="INTEGER"/>
+        <result property="saleOrderId" column="sale_order_id" jdbcType="INTEGER"/>
         <association property="model" column="model_id"  javaType="model" select="selectModelById"/>
         <association property="saleCart" column="sale_cart_id"  javaType="saleCart" select="selectSaleCartById"/>
+        <association property="saleOrder" column="sale_order_id"  javaType="saleOrder" select="selectSaleOrderById"/>
     </resultMap>
     <select id="selectModelById" resultType="model">
         select
@@ -23,35 +25,44 @@
         from sale_cart
         where id = #{sale_cart_id}
     </select>
+    <select id="selectSaleOrderById" resultType="saleOrder">
+        select
+            id, phone_num, address, total_price, status, client_id
+        from sale_order
+        where id = #{sale_order_id}
+    </select>
 
     <!--查询单个-->
-    <select id="queryById" resultMap="SaleCartItemMap">
+    <select id="queryById" resultMap="SaleCartOrderItemMap">
         select
-          id, num, sale_price, model_id, sale_cart_id
-        from sale_cart_item
+          id, num, sale_price, model_id, sale_cart_id, sale_order_id
+        from sale_cart_order_item
         where id = #{id}
     </select>
 
     <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="SaleCartItemMap">
+    <select id="queryAllByLimit" resultMap="SaleCartOrderItemMap">
         select
-          id, num, sale_price, model_id, sale_cart_id
-        from sale_cart_item
+          id, num, sale_price, model_id, sale_cart_id, sale_order_id
+        from sale_cart_order_item
         <where>
-            <if test="saleCartItem.id != null">
-                and id = #{saleCartItem.id}
+            <if test="saleCartOrderItem.id != null">
+                and id = #{saleCartOrderItem.id}
             </if>
-            <if test="saleCartItem.num != null">
-                and num = #{saleCartItem.num}
+            <if test="saleCartOrderItem.num != null">
+                and num = #{saleCartOrderItem.num}
             </if>
-            <if test="saleCartItem.salePrice != null">
-                and sale_price = #{saleCartItem.salePrice}
+            <if test="saleCartOrderItem.salePrice != null">
+                and sale_price = #{saleCartOrderItem.salePrice}
             </if>
-            <if test="saleCartItem.modelId != null">
-                and model_id = #{saleCartItem.modelId}
+            <if test="saleCartOrderItem.modelId != null">
+                and model_id = #{saleCartOrderItem.modelId}
             </if>
-            <if test="saleCartItem.saleCartId != null">
-                and sale_cart_id = #{saleCartItem.saleCartId}
+            <if test="saleCartOrderItem.saleCartId != null">
+                and sale_cart_id = #{saleCartOrderItem.saleCartId}
+            </if>
+            <if test="saleCartOrderItem.saleOrderId != null">
+                and sale_order_id = #{saleCartOrderItem.saleOrderId}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
@@ -60,7 +71,7 @@
     <!--统计总行数-->
     <select id="count" resultType="java.lang.Long">
         select count(1)
-        from sale_cart_item
+        from sale_cart_order_item
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -77,18 +88,21 @@
             <if test="saleCartId != null">
                 and sale_cart_id = #{saleCartId}
             </if>
+            <if test="saleOrderId != null">
+                and sale_order_id = #{saleOrderId}
+            </if>
         </where>
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into sale_cart_item(num, sale_price, model_id, sale_cart_id)
-        values (#{num}, #{salePrice}, #{modelId}, #{saleCartId})
+        insert into sale_cart_order_item(num, sale_price, model_id, sale_cart_id, sale_order_id)
+        values (#{num}, #{salePrice}, #{modelId}, #{saleCartId}, #{saleOrderId})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update sale_cart_item
+        update sale_cart_order_item
         <set>
             <if test="num != null">
                 num = #{num},
@@ -99,8 +113,11 @@
             <if test="modelId != null">
                 model_id = #{modelId},
             </if>
-            <if test="saleCartId != null">
+            <if test="1 == 1">
                 sale_cart_id = #{saleCartId},
+            </if>
+            <if test="saleOrderId != null">
+                sale_order_id = #{saleOrderId},
             </if>
         </set>
         where id = #{id}
@@ -108,7 +125,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from sale_cart_item where id = #{id}
+        delete from sale_cart_order_item where id = #{id}
     </delete>
 
 </mapper>

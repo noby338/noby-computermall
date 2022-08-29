@@ -1,17 +1,17 @@
 package com.woniuxy.salesmanage.dao;
 
-import com.woniuxy.commonentity.entity.SaleCartItem;
+import com.woniuxy.commonentity.entity.SaleCartOrderItem;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 /**
- * 出售购入车条目(SaleCartItem)表数据库访问层
+ * 出售购入车条目(SaleCartOrderItem)表数据库访问层
  *
  * @author Noby
- * @since 2022-08-28 22:45:22
+ * @since 2022-08-29 15:48:26
  */
-public interface SaleCartItemDao {
+public interface SaleCartOrderItemDao {
 
     /**
      * 通过ID查询单条数据
@@ -19,40 +19,40 @@ public interface SaleCartItemDao {
      * @param id 主键
      * @return 实例对象
      */
-    SaleCartItem queryById(Integer id);
+    SaleCartOrderItem queryById(Integer id);
 
     /**
      * 查询指定行数据
      *
-     * @param saleCartItem 查询条件
+     * @param saleCartOrderItem 查询条件
      * @param pageable         分页对象
      * @return 对象列表
      */
-    List<SaleCartItem> queryAllByLimit(@Param("saleCartItem") SaleCartItem saleCartItem, @Param("pageable") Pageable pageable);
+    List<SaleCartOrderItem> queryAllByLimit(@Param("saleCartOrderItem") SaleCartOrderItem saleCartOrderItem, @Param("pageable") Pageable pageable);
 
     /**
      * 统计总行数
      *
-     * @param saleCartItem 查询条件
+     * @param saleCartOrderItem 查询条件
      * @return 总行数
      */
-    long count(SaleCartItem saleCartItem);
+    long count(SaleCartOrderItem saleCartOrderItem);
 
     /**
      * 新增数据
      *
-     * @param saleCartItem 实例对象
+     * @param saleCartOrderItem 实例对象
      * @return 影响行数
      */
-    int insert(SaleCartItem saleCartItem);
+    int insert(SaleCartOrderItem saleCartOrderItem);
 
     /**
      * 修改数据
      *
-     * @param saleCartItem 实例对象
+     * @param saleCartOrderItem 实例对象
      * @return 影响行数
      */
-    int update(SaleCartItem saleCartItem);
+    int update(SaleCartOrderItem saleCartOrderItem);
 
     /**
      * 通过主键删除数据

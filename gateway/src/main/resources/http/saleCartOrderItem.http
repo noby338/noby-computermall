@@ -1,0 +1,51 @@
+
+### 通过id查询
+GET http://localhost:7071/saleCartOrderItem/3
+
+### 添加
+POST http://localhost:7071/saleCartOrderItem
+Content-Type: application/json
+
+{
+  "id": null,
+  "num": 20,
+  "salePrice": null,
+  "modelId": 5,
+  "saleCartId": 2,
+  "saleOrderId": null,
+  "model": null,
+  "saleCart": null,
+  "saleOrder": null
+}
+
+
+### 删除
+DELETE http://localhost:7071/saleCartOrderItem/1
+
+### 分页查询
+GET http://localhost:7071/saleCartOrderItem/2/5
+Content-Type: application/json
+
+{
+  "id": null,
+  "address": null,
+  "num": 1,
+  "totalCapacity": 300,
+  "componentsId": 1
+}
+
+### 修改
+PUT http://localhost:7071/saleCartOrderItem
+Content-Type: application/json
+
+{
+  "id": 15,
+  "num": null,
+  "salePrice": null,
+  "modelId": null,
+  "saleCartId": null,
+  "saleOrderId": null,
+  "model": null,
+  "saleCart": null,
+  "saleOrder": null
+}

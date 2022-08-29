@@ -4,6 +4,8 @@ import com.woniuxy.commonentity.entity.ClientAddress;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.List;
+
 /**
  * 商户的收货地址(ClientAddress)表服务接口
  *
@@ -19,6 +21,14 @@ public interface ClientAddressService {
      * @return 实例对象
      */
     ClientAddress queryById(Integer id);
+
+    /**
+     * 条件查询
+     *
+     * @param clientAddress 筛选条件
+     * @return 查询结果
+     */
+    List<ClientAddress> queryByEntity(ClientAddress clientAddress);
 
     /**
      * 分页查询

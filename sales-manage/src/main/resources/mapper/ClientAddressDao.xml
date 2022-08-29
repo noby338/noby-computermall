@@ -24,6 +24,27 @@
         where id = #{id}
     </select>
 
+    <!--条件查询-->
+    <select id="queryAllByEntity" resultMap="ClientAddressMap">
+        select
+            id, address, client_id, is_default
+        from client_address
+        <where>
+            <if test="clientAddress.id != null">
+                and id = #{clientAddress.id}
+            </if>
+            <if test="clientAddress.address != null and clientAddress.address != ''">
+                and address = #{clientAddress.address}
+            </if>
+            <if test="clientAddress.clientId != null">
+                and client_id = #{clientAddress.clientId}
+            </if>
+            <if test="clientAddress.isDefault != null">
+                and is_default = #{clientAddress.isDefault}
+            </if>
+        </where>
+    </select>
+
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="ClientAddressMap">
         select

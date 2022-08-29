@@ -22,6 +22,14 @@ public interface ClientAddressDao {
     ClientAddress queryById(Integer id);
 
     /**
+     * 条件查询
+     *
+     * @param clientAddress 查询条件
+     * @return 对象列表
+     */
+    List<ClientAddress> queryAllByEntity(@Param("clientAddress") ClientAddress clientAddress);
+
+    /**
      * 查询指定行数据
      *
      * @param clientAddress 查询条件

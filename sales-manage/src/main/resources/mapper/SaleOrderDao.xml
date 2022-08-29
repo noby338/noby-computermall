@@ -11,6 +11,22 @@
         <result property="totalPrice" column="total_price" jdbcType="NUMERIC"/>
         <association property="client" column="client_id"  javaType="client" select="selectClientById"/>
         <collection property="saleRecordList" column="id" ofType="saleRecord" select="selectSaleRecordById"/>
+        <collection property="saleCartOrderItemList" column="id" ofType="saleCartOrderItem" select="selectSaleCartOrderItemById"/>
+    </resultMap>
+    <resultMap type="saleCartOrderItem" id="saleCartOrderItemMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="num" column="num" jdbcType="INTEGER"/>
+        <result property="salePrice" column="sale_price" jdbcType="NUMERIC"/>
+        <result property="modelId" column="model_id" jdbcType="INTEGER"/>
+        <result property="saleCartId" column="sale_cart_id" jdbcType="INTEGER"/>
+        <result property="saleOrderId" column="sale_order_id" jdbcType="INTEGER"/>
+        <association property="model" column="model_id"  javaType="model" select="selectModelById"/>
+    </resultMap>
+    <resultMap type="saleRecord" id="saleRecordMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="dateTime" column="date_time" jdbcType="TIMESTAMP"/>
+        <result property="recordType" column="record_type" jdbcType="INTEGER"/>
+        <result property="saleOrderId" column="sale_order_id" jdbcType="INTEGER"/>
     </resultMap>
     <select id="selectClientById" resultType="client">
         select
@@ -18,12 +34,54 @@
         from client
         where id = #{client_id}
     </select>
-    <select id="selectSaleRecordById" resultType="saleRecord">
+    <select id="selectSaleRecordById" resultMap="saleRecordMap">
         select
             id, date_time, record_type, sale_order_id
         from sale_record
         where sale_order_id=#{id};
     </select>
+    <select id="selectSaleCartOrderItemById" resultMap="saleCartOrderItemMap">
+        select
+            id, num, sale_price, model_id, sale_cart_id, sale_order_id
+        from sale_cart_order_item
+        where sale_order_id=#{id};
+    </select>
+    <select id="selectModelById" resultMap="ModelMap">
+        select
+            id, name, purchase_price, sale_price, num, supplier_id, store_id
+        from model
+        where id = #{model_id}
+    </select>
+    <!--查询model开始-->
+    <resultMap type="com.woniuxy.commonentity.entity.Model" id="ModelMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="supplierId" column="supplier_id" jdbcType="INTEGER"/>
+        <result property="storeId" column="store_id" jdbcType="INTEGER"/>
+        <result property="num" column="num" jdbcType="INTEGER"/>
+        <result property="purchasePrice" column="purchase_price" jdbcType="NUMERIC"/>
+        <result property="salePrice" column="sale_price" jdbcType="NUMERIC"/>
+        <association property="supplier" column="supplier_id"  javaType="supplier" select="selectSupplierById"/>
+    </resultMap>
+    <resultMap type="com.woniuxy.commonentity.entity.Supplier" id="SupplierMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="componentsId" column="components_id" jdbcType="INTEGER"/>
+        <association property="components" column="components_id"  javaType="components" select="selectComponentsById"/>
+    </resultMap>
+    <select id="selectSupplierById" resultMap="SupplierMap">
+        select
+            id, name, components_id
+        from supplier
+        where id = #{supplier_id}
+    </select>
+    <select id="selectComponentsById" resultType="components">
+        select
+            id, name
+        from components
+        where id = #{components_id}
+    </select>
+    <!--查询model结束-->
 
     <!--查询单个-->
     <select id="queryById" resultMap="SaleOrderMap">

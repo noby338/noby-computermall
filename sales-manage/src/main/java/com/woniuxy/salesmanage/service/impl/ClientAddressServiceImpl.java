@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 商户的收货地址(ClientAddress)表服务实现类
@@ -43,6 +44,17 @@ public class ClientAddressServiceImpl implements ClientAddressService {
     public Page<ClientAddress> queryByPage(ClientAddress clientAddress, PageRequest pageRequest) {
         long total = this.clientAddressDao.count(clientAddress);
         return new PageImpl<>(this.clientAddressDao.queryAllByLimit(clientAddress, pageRequest), pageRequest, total);
+    }
+
+    /**
+     * 条件查询
+     *
+     * @param clientAddress 筛选条件
+     * @return 查询结果
+     */
+    @Override
+    public List<ClientAddress> queryByEntity(ClientAddress clientAddress) {
+        return clientAddressDao.queryAllByEntity(clientAddress);
     }
 
     /**

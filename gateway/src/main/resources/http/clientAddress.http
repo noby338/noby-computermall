@@ -21,11 +21,7 @@ GET http://localhost:7071/clientAddress/2/5
 Content-Type: application/json
 
 {
-  "id": null,
-  "address": null,
-  "num": 1,
-  "totalCapacity": 300,
-  "componentsId": 1
+  "id": null
 }
 
 ### 修改

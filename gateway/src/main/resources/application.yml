@@ -19,11 +19,11 @@ spring:
               - PUT
               - OPTIONS
             allowedHeaders: "*"               #允许请求头
-      routes: #路由配置
+      routes: #路由配置Q
         - id: sales-manage
           uri: lb://sales-manage
           predicates:
-            - Path=/client/**,/clientAddress/**,/saleCart/**,/saleCartItem/**,/saleOrder/**,/saleRecord/**
+            - Path=/client/**,/clientAddress/**,/saleCart/**,/saleCartOrderItem/**,/saleOrder/**,/saleRecord/**
         - id: cooperation-manage
           uri: lb://cooperation-manage
           predicates:

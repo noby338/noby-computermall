@@ -7,20 +7,20 @@
         <result property="totalPrice" column="total_price" jdbcType="NUMERIC"/>
         <result property="clientId" column="client_id" jdbcType="INTEGER"/>
         <association property="client" column="client_id"  javaType="client" select="selectClientById"/>
-        <collection property="saleCartItemList" column="id" ofType="saleCartItem" select="selectSaleCartItemById"/>
+        <collection property="saleCartOrderItemList" column="id" ofType="saleCartOrderItem" select="selectSaleCartOrderItemById"/>
     </resultMap>
     <resultMap type="client" id="ClientMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="phoneNum" column="phone_num" jdbcType="VARCHAR"/>
     </resultMap>
-    <resultMap type="saleCartItem" id="saleCartItemMap">
+    <resultMap type="saleCartOrderItem" id="saleCartOrderItemMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="num" column="num" jdbcType="INTEGER"/>
         <result property="salePrice" column="sale_price" jdbcType="NUMERIC"/>
         <result property="modelId" column="model_id" jdbcType="INTEGER"/>
         <result property="saleCartId" column="sale_cart_id" jdbcType="INTEGER"/>
-        <result property="salePrice" column="sale_price" jdbcType="NUMERIC"/>
+        <result property="saleOrderId" column="sale_order_id" jdbcType="INTEGER"/>
         <association property="model" column="model_id"  javaType="model" select="selectModelById"/>
     </resultMap>
     <select id="selectClientById" resultMap="ClientMap">
@@ -29,13 +29,12 @@
         from client
         where id = #{client_id}
     </select>
-    <select id="selectSaleCartItemById" resultMap="saleCartItemMap">
+    <select id="selectSaleCartOrderItemById" resultMap="saleCartOrderItemMap">
         select
-            id, num, sale_price, model_id, sale_cart_id
-        from sale_cart_item
+            id, num, sale_price, model_id, sale_cart_id, sale_order_id
+        from sale_cart_order_item
         where sale_cart_id=#{id};
     </select>
-
     <select id="selectModelById" resultMap="ModelMap">
         select
             id, name, purchase_price, sale_price, num, supplier_id, store_id

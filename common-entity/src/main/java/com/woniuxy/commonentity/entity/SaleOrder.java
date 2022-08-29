@@ -27,6 +27,7 @@ public class SaleOrder implements Serializable {
 
     private Client client;
     private List<SaleRecord> saleRecordList;
+    private List<SaleCartOrderItem> saleCartOrderItemList;
 
 }
 

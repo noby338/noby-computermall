@@ -3,7 +3,7 @@ package com.woniuxy.salesmanage.controller;
 import com.woniuxy.commonentity.entity.Model;
 import com.woniuxy.commonentity.entity.SaleCart;
 import com.woniuxy.commonentity.entity.SaleCartOrderItem;
-import com.woniuxy.salesmanage.openFeign.ModelFeign;
+import com.woniuxy.salesmanage.openFeign.CooperationFeign;
 import com.woniuxy.salesmanage.service.SaleCartOrderItemService;
 import com.woniuxy.salesmanage.service.SaleCartService;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +35,7 @@ public class SaleCartOrderItemController {
     private SaleCartService saleCartService;
 
     @Resource
-    private ModelFeign modelFeign;
+    private CooperationFeign cooperationFeign;
 
 
     /**
@@ -81,7 +81,7 @@ public class SaleCartOrderItemController {
 
         //该配件型号是否存在
         Integer modelId = saleCartOrderItem.getModelId();
-        Model model = modelFeign.queryById(modelId).getBody();
+        Model model = cooperationFeign.modelQueryById(modelId).getBody();
         if (model == null) {
             return new ResponseEntity("没有该型号配件", HttpStatus.INTERNAL_SERVER_ERROR);
         }

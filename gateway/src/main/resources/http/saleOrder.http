@@ -3,16 +3,16 @@
 GET http://localhost:7071/saleOrder/placeOrder/2
 
 ### 付款
-GET http://localhost:7071/saleOrder/payOrder/7
+GET http://localhost:7071/saleOrder/payOrder/2
 
 ### 发货
-GET http://localhost:7071/saleOrder/shipOrder/7
+GET http://localhost:7071/saleOrder/shipOrder/2
 
 ### 收货
-GET http://localhost:7071/saleOrder/receiveOrder/7
+GET http://localhost:7071/saleOrder/receiveOrder/2
 
 ### 通过id查询
-GET http://localhost:7071/saleOrder/7
+GET http://localhost:7071/saleOrder/2
 
 ### 添加
 POST http://localhost:7071/saleOrder

@@ -7,9 +7,9 @@
         <result property="address" column="address" jdbcType="VARCHAR"/>
         <result property="clientId" column="client_id" jdbcType="INTEGER"/>
         <result property="isDefault" column="is_default" jdbcType="INTEGER"/>
-        <association property="client" column="client_id"  javaType="client" select="selectClientById"/>
+        <association property="client" column="client_id"  javaType="com.woniuxy.commonentity.entity.Client" select="selectClientById"/>
     </resultMap>
-    <select id="selectClientById" resultType="client">
+    <select id="selectClientById" resultType="com.woniuxy.commonentity.entity.Client">
         select
             id, name, phone_num
         from client

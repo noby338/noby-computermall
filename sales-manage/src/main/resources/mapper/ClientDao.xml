@@ -6,23 +6,23 @@
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="phoneNum" column="phone_num" jdbcType="VARCHAR"/>
-        <association property="saleCart" column="id"  javaType="saleCart" select="selectSaleCartById"/>
-        <collection property="clientAddressList" column="id" ofType="clientAddress" select="selectClientAddressById"/>
-        <collection property="saleOrderList" column="id" ofType="saleOrder" select="selectSaleOrderById"/>
+        <association property="saleCart" column="id"  javaType="com.woniuxy.commonentity.entity.SaleCart" select="selectSaleCartById"/>
+        <collection property="clientAddressList" column="id" ofType="com.woniuxy.commonentity.entity.ClientAddress" select="selectClientAddressById"/>
+        <collection property="saleOrderList" column="id" ofType="com.woniuxy.commonentity.entity.SaleOrder" select="selectSaleOrderById"/>
     </resultMap>
-    <select id="selectSaleCartById" resultType="saleCart">
+    <select id="selectSaleCartById" resultType="com.woniuxy.commonentity.entity.SaleCart">
         select
             id, total_price, client_id
         from sale_cart
         where client_id = #{id}
     </select>
-    <select id="selectSaleOrderById" resultType="SaleOrder">
+    <select id="selectSaleOrderById" resultType="com.woniuxy.commonentity.entity.SaleOrder">
         select
             id, phone_num, address, total_price, status, client_id
         from sale_order
         where client_id=#{id};
     </select>
-    <select id="selectClientAddressById" resultType="clientAddress">
+    <select id="selectClientAddressById" resultType="com.woniuxy.commonentity.entity.ClientAddress">
         select
             id, address, is_default, client_id
         from client_address

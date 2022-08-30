@@ -21,7 +21,7 @@ public class SaleRecord implements Serializable {
     private Integer id;
     private Date dateTime;
     private Integer saleOrderId;
-    private Integer recordType;//记录种类(1：下单；2：付款；3：发货；4：收货；5：退货；6：退款)
+    private Integer recordType;//记录种类(1：下单；2：付款；3：发货；4：收货；5：退货；6：退款；7：取消)
 
     private SaleOrder saleOrder;
 }

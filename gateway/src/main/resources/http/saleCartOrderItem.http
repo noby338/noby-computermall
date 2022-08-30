@@ -1,6 +1,6 @@
 
 ### 通过id查询
-GET http://localhost:7071/saleCartOrderItem/3
+GET http://localhost:7071/saleCartOrderItem/20
 
 ### 添加
 POST http://localhost:7071/saleCartOrderItem
@@ -8,9 +8,9 @@ Content-Type: application/json
 
 {
   "id": null,
-  "num": 20,
+  "num": 30,
   "salePrice": null,
-  "modelId": 5,
+  "modelId": 3,
   "saleCartId": 2,
   "saleOrderId": null,
   "model": null,

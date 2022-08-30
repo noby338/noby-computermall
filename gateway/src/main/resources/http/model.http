@@ -34,9 +34,11 @@ PUT http://localhost:7071/model
 Content-Type: application/json
 
 {
-  "id": null,
+  "id": 1,
   "name": null,
   "supplierId": null,
-  "price": null,
-  "states":1
+  "storeId": null,
+  "num": 300,
+  "purchasePrice": null,
+  "salePrice": null
 }

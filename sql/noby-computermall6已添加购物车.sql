@@ -27,7 +27,7 @@ CREATE TABLE `client` (
   `name` varchar(20) DEFAULT NULL,
   `phone_num` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='商户';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='商户';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,7 +55,7 @@ CREATE TABLE `client_address` (
   PRIMARY KEY (`id`),
   KEY `client_address_client_id_fk` (`client_id`),
   CONSTRAINT `client_address_client_id_fk` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='商户的收货地址';
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='商户的收货地址';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +64,7 @@ CREATE TABLE `client_address` (
 
 LOCK TABLES `client_address` WRITE;
 /*!40000 ALTER TABLE `client_address` DISABLE KEYS */;
-INSERT INTO `client_address` VALUES (1,'青海省秀云县锡山南昌路S座 387926',1,1),(2,'福建省桂香市丰都邯郸路i座 934189',1,2),(3,'贵州省岩市高明齐齐哈尔路P座 835776',1,3),(4,'江苏省文县翔安永安路X座 399934',1,4),(5,'宁夏回族自治区沈阳县黄浦张路x座 108702',1,5),(6,'湖南省佛山市江北马路j座 274943',1,6),(7,'北京市秀兰县沈河海门街a座 905127',1,7),(8,'山东省巢湖市西峰兴安盟街x座 984194',1,8),(9,'陕西省海门县友好张家港路B座 844465',1,9),(10,'辽宁省淑珍市崇文汕尾街D座 908607',1,10),(11,'内蒙古自治区雪县沈北新王街U座 895590',0,1),(12,'河南省潜江县上街南宁街N座 562049',0,2),(13,'宁夏回族自治区福州县南长易路b座 573836',0,3),(14,'甘肃省志强县花溪高路q座 292724',0,4),(15,'天津市秀梅市丰都季路Y座 823190',0,5),(16,'甘肃省长春市华龙台北街c座 801763',0,6),(17,'江苏省西安县和平张路z座 921187',0,7),(18,'贵州省倩县龙潭李街h座 348847',0,8),(19,'澳门特别行政区辛集县双滦张街m座 652077',0,9),(20,'湖南省潜江县新城哈尔滨街L座 428019',0,10);
+INSERT INTO `client_address` VALUES (1,'青海省秀云县锡山南昌路S座 387926',1,1),(2,'福建省桂香市丰都邯郸路i座 934189',1,2),(3,'贵州省岩市高明齐齐哈尔路P座 835776',1,3),(4,'江苏省文县翔安永安路X座 399934',1,4),(5,'宁夏回族自治区沈阳县黄浦张路x座 108702',1,5),(6,'湖南省佛山市江北马路j座 274943',1,6),(7,'北京市秀兰县沈河海门街a座 905127',1,7),(8,'山东省巢湖市西峰兴安盟街x座 984194',1,8),(9,'陕西省海门县友好张家港路B座 844465',1,9),(10,'辽宁省淑珍市崇文汕尾街D座 908607',1,10),(11,'内蒙古自治区雪县沈北新王街U座 895590',0,1),(12,'河南省潜江县上街南宁街N座 562049',0,2),(13,'宁夏回族自治区福州县南长易路b座 573836',0,3),(14,'甘肃省志强县花溪高路q座 292724',0,4),(15,'天津市秀梅市丰都季路Y座 823190',0,5),(16,'甘肃省长春市华龙台北街c座 801763',0,6),(17,'江苏省西安县和平张路z座 921187',0,7),(18,'贵州省倩县龙潭李街h座 348847',0,8),(19,'澳门特别行政区辛集县双滦张街m座 652077',0,9),(20,'湖南省潜江县新城哈尔滨街L座 428019',0,10),(21,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `client_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,41 +148,42 @@ CREATE TABLE `sale_cart` (
 
 LOCK TABLES `sale_cart` WRITE;
 /*!40000 ALTER TABLE `sale_cart` DISABLE KEYS */;
-INSERT INTO `sale_cart` VALUES (1,0.00,1),(2,0.00,2),(3,0.00,3),(4,0.00,4),(5,0.00,5),(6,0.00,6),(7,0.00,7),(8,0.00,8),(9,0.00,9),(10,0.00,10);
+INSERT INTO `sale_cart` VALUES (1,0.00,1),(2,103586.00,2),(3,0.00,3),(4,0.00,4),(5,0.00,5),(6,0.00,6),(7,0.00,7),(8,0.00,8),(9,0.00,9),(10,0.00,10);
 /*!40000 ALTER TABLE `sale_cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `sale_cart_item`
+-- Table structure for table `sale_cart_order_item`
 --
 
-DROP TABLE IF EXISTS `sale_cart_item`;
+DROP TABLE IF EXISTS `sale_cart_order_item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `sale_cart_item` (
+CREATE TABLE `sale_cart_order_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `num` int(11) DEFAULT NULL,
   `sale_price` decimal(8,2) DEFAULT NULL COMMENT '出售价格',
-  `sale_order_id` int(11) DEFAULT NULL,
   `model_id` int(11) DEFAULT NULL,
   `sale_cart_id` int(11) DEFAULT NULL,
+  `sale_order_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `purchase_order_item_model_id_fk` (`model_id`),
-  KEY `purchase_order_item_purchase_order_id_fk` (`sale_order_id`),
   KEY `sale_cart_item_sale_cart_id_fk` (`sale_cart_id`),
+  KEY `sale_cart_order_item_sale_order_id_fk` (`sale_order_id`),
   CONSTRAINT `purchase_order_item_model_id_fk` FOREIGN KEY (`model_id`) REFERENCES `model` (`id`),
-  CONSTRAINT `purchase_order_item_purchase_order_id_fk` FOREIGN KEY (`sale_order_id`) REFERENCES `sale_order` (`id`),
-  CONSTRAINT `sale_cart_item_sale_cart_id_fk` FOREIGN KEY (`sale_cart_id`) REFERENCES `sale_cart` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='出售购入车条目';
+  CONSTRAINT `sale_cart_item_sale_cart_id_fk` FOREIGN KEY (`sale_cart_id`) REFERENCES `sale_cart` (`id`),
+  CONSTRAINT `sale_cart_order_item_sale_order_id_fk` FOREIGN KEY (`sale_order_id`) REFERENCES `sale_order` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='出售购入车条目';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `sale_cart_item`
+-- Dumping data for table `sale_cart_order_item`
 --
 
-LOCK TABLES `sale_cart_item` WRITE;
-/*!40000 ALTER TABLE `sale_cart_item` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sale_cart_item` ENABLE KEYS */;
+LOCK TABLES `sale_cart_order_item` WRITE;
+/*!40000 ALTER TABLE `sale_cart_order_item` DISABLE KEYS */;
+INSERT INTO `sale_cart_order_item` VALUES (19,30,2100.00,3,2,NULL),(20,10,4058.60,1,2,NULL);
+/*!40000 ALTER TABLE `sale_cart_order_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -194,8 +195,8 @@ DROP TABLE IF EXISTS `sale_order`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sale_order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `phone_num` int(11) DEFAULT NULL,
-  `address` int(11) DEFAULT NULL,
+  `phone_num` varchar(20) DEFAULT NULL,
+  `address` varchar(20) DEFAULT NULL,
   `total_price` decimal(10,2) DEFAULT NULL,
   `status` int(11) DEFAULT NULL COMMENT '1：已下单；2：已付款；3：已发货；4：已收货',
   `client_id` int(11) DEFAULT NULL,
@@ -227,8 +228,9 @@ CREATE TABLE `sale_record` (
   `record_type` int(11) DEFAULT NULL COMMENT '记录种类(1：下单；2：付款；3：发货；4：收货；5：退货；6：退款)',
   `sale_order_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `purchase_record_model_id_fk` (`sale_order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='出售记录';
+  KEY `sale_record_sale_order_id_fk` (`sale_order_id`),
+  CONSTRAINT `sale_record_sale_order_id_fk` FOREIGN KEY (`sale_order_id`) REFERENCES `sale_order` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='出售记录';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -237,7 +239,6 @@ CREATE TABLE `sale_record` (
 
 LOCK TABLES `sale_record` WRITE;
 /*!40000 ALTER TABLE `sale_record` DISABLE KEYS */;
-INSERT INTO `sale_record` VALUES (1,'2021-12-24 00:50:31',NULL,1),(2,'2022-03-11 08:12:46',NULL,2),(3,'2021-07-22 04:51:30',NULL,3),(4,'2022-01-04 20:23:26',NULL,4),(5,'2020-11-15 19:43:16',NULL,5),(6,'2021-02-03 19:13:18',NULL,6),(7,'2021-10-12 03:44:50',NULL,7),(8,'2022-02-04 14:01:08',NULL,8),(9,'2021-03-14 02:44:33',NULL,9),(10,'2022-06-13 15:55:39',NULL,10),(11,'2022-02-18 20:29:17',NULL,11),(12,'2022-05-29 17:38:32',NULL,12),(13,'2022-08-01 02:57:55',NULL,13),(14,'2021-02-27 17:43:57',NULL,14),(15,'2021-05-04 07:04:44',NULL,15),(16,'2021-08-28 04:38:49',NULL,16),(17,'2021-03-11 21:10:09',NULL,17),(18,'2021-07-29 05:00:48',NULL,18),(19,'2020-11-04 00:54:01',NULL,19),(20,'2021-10-02 17:45:38',NULL,20);
 /*!40000 ALTER TABLE `sale_record` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,7 +298,6 @@ CREATE TABLE `store_record` (
 
 LOCK TABLES `store_record` WRITE;
 /*!40000 ALTER TABLE `store_record` DISABLE KEYS */;
-INSERT INTO `store_record` VALUES (1,-15,'2022-05-31 10:02:19',14,10),(2,39,'2021-11-28 01:03:44',14,5),(3,200,'2022-03-31 02:31:08',20,16),(4,-97,'2021-09-10 02:14:43',14,11),(5,205,'2022-05-16 08:52:02',8,16),(6,209,'2021-09-13 09:06:47',3,17),(7,-65,'2022-06-18 13:23:13',2,9),(8,-76,'2022-03-04 21:48:55',2,18),(9,-10,'2021-09-28 00:03:07',11,45),(10,-224,'2022-04-27 12:37:13',17,42),(11,236,'2022-06-11 09:04:04',15,45),(12,-143,'2021-12-16 06:58:28',18,18),(13,-251,'2022-06-24 19:51:05',10,6),(14,270,'2021-10-31 08:22:14',1,6),(15,-144,'2022-05-30 10:56:47',14,25),(16,-145,'2022-03-26 01:04:14',7,27),(17,7,'2022-02-09 01:52:12',9,4),(18,36,'2022-06-05 10:11:19',5,5),(19,-239,'2022-03-02 22:37:36',2,34),(20,-2,'2021-09-24 05:39:20',4,38),(21,-250,'2022-01-18 20:28:03',19,44),(22,-191,'2021-09-26 04:35:17',5,8),(23,298,'2021-08-27 23:06:54',19,25),(24,-237,'2022-08-12 09:37:32',10,31),(25,279,'2021-09-10 20:25:15',9,33),(26,42,'2022-07-20 01:42:24',19,45),(27,-72,'2021-12-08 10:28:44',18,40),(28,-64,'2021-09-08 05:24:58',18,8),(29,-289,'2021-11-30 04:40:04',12,46),(30,146,'2022-05-25 04:31:12',12,18),(31,-255,'2021-09-15 07:20:17',8,44),(32,-177,'2022-07-26 11:05:32',20,3),(33,119,'2021-10-14 00:46:11',14,6),(34,160,'2022-05-12 02:35:36',17,4),(35,215,'2022-02-03 14:18:19',9,17),(36,265,'2022-04-02 09:43:29',18,4),(37,-76,'2022-04-16 02:59:56',3,30),(38,103,'2021-09-20 02:41:17',17,20),(39,-54,'2022-07-12 10:04:29',7,16),(40,-206,'2022-05-25 08:12:47',8,21);
 /*!40000 ALTER TABLE `store_record` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -337,4 +337,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-08-28 16:27:48
+-- Dump completed on 2022-08-29 21:51:25

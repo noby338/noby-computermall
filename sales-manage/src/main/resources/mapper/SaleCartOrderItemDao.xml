@@ -9,23 +9,23 @@
         <result property="modelId" column="model_id" jdbcType="INTEGER"/>
         <result property="saleCartId" column="sale_cart_id" jdbcType="INTEGER"/>
         <result property="saleOrderId" column="sale_order_id" jdbcType="INTEGER"/>
-        <association property="model" column="model_id"  javaType="model" select="selectModelById"/>
-        <association property="saleCart" column="sale_cart_id"  javaType="saleCart" select="selectSaleCartById"/>
-        <association property="saleOrder" column="sale_order_id"  javaType="saleOrder" select="selectSaleOrderById"/>
+        <association property="model" column="model_id"  javaType="com.woniuxy.commonentity.entity.Model" select="selectModelById"/>
+        <association property="saleCart" column="sale_cart_id"  javaType="com.woniuxy.commonentity.entity.SaleCart" select="selectSaleCartById"/>
+        <association property="saleOrder" column="sale_order_id"  javaType="com.woniuxy.commonentity.entity.SaleOrder" select="selectSaleOrderById"/>
     </resultMap>
-    <select id="selectModelById" resultType="model">
+    <select id="selectModelById" resultType="com.woniuxy.commonentity.entity.Model">
         select
             id, name, purchase_price, sale_price, num, supplier_id, store_id
         from model
         where id = #{model_id}
     </select>
-    <select id="selectSaleCartById" resultType="saleCart">
+    <select id="selectSaleCartById" resultType="com.woniuxy.commonentity.entity.SaleCart">
         select
             id, total_price, client_id
         from sale_cart
         where id = #{sale_cart_id}
     </select>
-    <select id="selectSaleOrderById" resultType="saleOrder">
+    <select id="selectSaleOrderById" resultType="com.woniuxy.commonentity.entity.SaleOrder">
         select
             id, phone_num, address, total_price, status, client_id
         from sale_order

@@ -33,7 +33,9 @@ PUT http://localhost:7071/store
 Content-Type: application/json
 
 {
-  "id": null,
-  "name": null,
-  "componentsId": 1
+  "id": 1,
+  "componentsId": null,
+  "address": null,
+  "num": 400,
+  "totalCapacity": null
 }

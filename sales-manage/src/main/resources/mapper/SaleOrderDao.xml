@@ -9,26 +9,26 @@
         <result property="status" column="status" jdbcType="INTEGER"/>
         <result property="clientId" column="client_id" jdbcType="INTEGER"/>
         <result property="totalPrice" column="total_price" jdbcType="NUMERIC"/>
-        <association property="client" column="client_id"  javaType="client" select="selectClientById"/>
-        <collection property="saleRecordList" column="id" ofType="saleRecord" select="selectSaleRecordById"/>
-        <collection property="saleCartOrderItemList" column="id" ofType="saleCartOrderItem" select="selectSaleCartOrderItemById"/>
+        <association property="client" column="client_id"  javaType="com.woniuxy.commonentity.entity.Client" select="selectClientById"/>
+        <collection property="saleRecordList" column="id" ofType="com.woniuxy.commonentity.entity.SaleRecord" select="selectSaleRecordById"/>
+        <collection property="saleCartOrderItemList" column="id" ofType="com.woniuxy.commonentity.entity.SaleCartOrderItem" select="selectSaleCartOrderItemById"/>
     </resultMap>
-    <resultMap type="saleCartOrderItem" id="saleCartOrderItemMap">
+    <resultMap type="com.woniuxy.commonentity.entity.SaleCartOrderItem" id="saleCartOrderItemMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="num" column="num" jdbcType="INTEGER"/>
         <result property="salePrice" column="sale_price" jdbcType="NUMERIC"/>
         <result property="modelId" column="model_id" jdbcType="INTEGER"/>
         <result property="saleCartId" column="sale_cart_id" jdbcType="INTEGER"/>
         <result property="saleOrderId" column="sale_order_id" jdbcType="INTEGER"/>
-        <association property="model" column="model_id"  javaType="model" select="selectModelById"/>
+        <association property="model" column="model_id"  javaType="com.woniuxy.commonentity.entity.Model" select="selectModelById"/>
     </resultMap>
-    <resultMap type="saleRecord" id="saleRecordMap">
+    <resultMap type="com.woniuxy.commonentity.entity.SaleRecord" id="saleRecordMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="dateTime" column="date_time" jdbcType="TIMESTAMP"/>
         <result property="recordType" column="record_type" jdbcType="INTEGER"/>
         <result property="saleOrderId" column="sale_order_id" jdbcType="INTEGER"/>
     </resultMap>
-    <select id="selectClientById" resultType="client">
+    <select id="selectClientById" resultType="com.woniuxy.commonentity.entity.Client">
         select
             id, name, phone_num
         from client
@@ -61,13 +61,13 @@
         <result property="num" column="num" jdbcType="INTEGER"/>
         <result property="purchasePrice" column="purchase_price" jdbcType="NUMERIC"/>
         <result property="salePrice" column="sale_price" jdbcType="NUMERIC"/>
-        <association property="supplier" column="supplier_id"  javaType="supplier" select="selectSupplierById"/>
+        <association property="supplier" column="supplier_id"  javaType="com.woniuxy.commonentity.entity.Supplier" select="selectSupplierById"/>
     </resultMap>
     <resultMap type="com.woniuxy.commonentity.entity.Supplier" id="SupplierMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="componentsId" column="components_id" jdbcType="INTEGER"/>
-        <association property="components" column="components_id"  javaType="components" select="selectComponentsById"/>
+        <association property="components" column="components_id"  javaType="com.woniuxy.commonentity.entity.Components" select="selectComponentsById"/>
     </resultMap>
     <select id="selectSupplierById" resultMap="SupplierMap">
         select
@@ -75,7 +75,7 @@
         from supplier
         where id = #{supplier_id}
     </select>
-    <select id="selectComponentsById" resultType="components">
+    <select id="selectComponentsById" resultType="com.woniuxy.commonentity.entity.Components">
         select
             id, name
         from components

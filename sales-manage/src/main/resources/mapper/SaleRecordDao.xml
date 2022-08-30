@@ -7,9 +7,9 @@
         <result property="dateTime" column="date_time" jdbcType="TIMESTAMP"/>
         <result property="saleOrderId" column="sale_order_id" jdbcType="INTEGER"/>
         <result property="recordType" column="record_type" jdbcType="INTEGER"/>
-        <association property="saleOrder" column="sale_order_id"  javaType="client" select="selectSaleOrderById"/>
+        <association property="saleOrder" column="sale_order_id"  javaType="com.woniuxy.commonentity.entity.Client" select="selectSaleOrderById"/>
     </resultMap>
-    <select id="selectSaleOrderById" resultType="saleOrder">
+    <select id="selectSaleOrderById" resultType="com.woniuxy.commonentity.entity.SaleOrder">
         select
             id, phone_num, address, total_price, status, client_id
         from sale_order

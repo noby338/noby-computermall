@@ -6,9 +6,9 @@
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="componentsId" column="components_id" jdbcType="INTEGER"/>
-        <association property="components" column="components_id"  javaType="components" select="selectComponentsById"/>
+        <association property="components" column="components_id"  javaType="com.woniuxy.commonentity.entity.Components" select="selectComponentsById"/>
     </resultMap>
-    <select id="selectComponentsById" resultType="components">
+    <select id="selectComponentsById" resultType="com.woniuxy.commonentity.entity.Components">
         select
             id, name
         from components

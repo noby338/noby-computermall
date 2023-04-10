@@ -2,6 +2,7 @@ server:
   port: ${port:5051}
 logging:
   level:
+    org.springframework.cloud.alibaba.seata.web: debug
     com.woniuxy.cooperationmanage: debug
 spring:
   application:
@@ -14,10 +15,24 @@ spring:
   cloud:
     nacos:
       server-addr: localhost:8848
-    alibaba:
-      seata:
-        tx-service-group: fsp_tx_group
-
+#    alibaba:
+#      seata:
+#        tx-service-group: fsp_tx_group
+seata:
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      namespace: ""
+      group: DEFAULT_GROUP
+      application: seata-server
+      username: nacos
+      password: nacos
+  tx-service-group: seata-demo # 事务组名称
+  service:
+    vgroup-mapping: # 事务组与cluster的映射关系
+      seata-demo: default
+  data-source-proxy-mode: AT
 mybatis:
   type-aliases-package: com.woniuxy.commonentity.entity
   mapper-locations: classpath:/mapper/*Dao.xml

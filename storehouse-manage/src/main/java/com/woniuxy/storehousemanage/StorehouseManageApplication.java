@@ -11,6 +11,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableDiscoveryClient
 @EnableFeignClients
 //@SpringBootApplication
+//该注解的意思是排除数据源自动配置，通过配置类手动配置DataSourceAutoConfiguration
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class StorehouseManageApplication {
 

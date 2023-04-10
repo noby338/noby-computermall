@@ -1,3 +1,5 @@
+### 下单
+GET http://localhost:4041/saleOrder/placeOrder/2
 
 ### 通过id查询
 GET http://localhost:4041/saleOrder/1

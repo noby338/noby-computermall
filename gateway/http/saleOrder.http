@@ -12,7 +12,7 @@ GET http://localhost:7071/saleOrder/shipOrder/2
 GET http://localhost:7071/saleOrder/receiveOrder/2
 
 ### 通过id查询
-GET http://localhost:7071/saleOrder/2
+GET http://localhost:7071/saleOrder/1
 
 ### 添加
 POST http://localhost:7071/saleOrder

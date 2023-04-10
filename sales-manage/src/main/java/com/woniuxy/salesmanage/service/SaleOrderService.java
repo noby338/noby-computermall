@@ -11,6 +11,33 @@ import org.springframework.data.domain.PageRequest;
  * @since 2022-08-28 15:39:29
  */
 public interface SaleOrderService {
+    /**
+     * 下单
+     * @param clientId
+     * @return
+     */
+    SaleOrder placeOrder(int clientId);
+
+    /**
+     * 付款
+     * @param orderId
+     * @return
+     */
+    SaleOrder payOrder(int orderId);
+
+    /**
+     * 发货
+     * @param orderId
+     * @return
+     */
+    SaleOrder shipOrder(int orderId);
+
+    /**
+     * 收货
+     * @param orderId
+     * @return
+     */
+    SaleOrder receiveOrder(int orderId);
 
     /**
      * 通过ID查询单条数据
